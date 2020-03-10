@@ -63,7 +63,9 @@ public abstract class GraphInstanceTest {
 	assertEquals(false, emptyInstance.remove("0"));
 	
 	//set
-	assertEquals(1, emptyInstance.set("1", "2", 1));
+	assertEquals(0, emptyInstance.set("1", "2", 1));
+	assertEquals(1, emptyInstance.set("1", "2", 2));
+	assertEquals(2, emptyInstance.set("1", "2", 1));
 	assertEquals(0, emptyInstance.set("1", "3", -1));
 	assertEquals(0, emptyInstance.set("2", "3", 0));
 	
