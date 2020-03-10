@@ -6,7 +6,7 @@ package P1.poet;
 import java.io.File;
 import java.io.IOException;
 
-import graph.Graph;
+import P1.graph.Graph;
 
 /**
  * A graph-based poetry generator.
