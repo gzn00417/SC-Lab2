@@ -16,7 +16,7 @@ import java.util.Set;
  * <p>
  * PS2 instructions: you MUST use the provided rep.
  */
-public class ConcreteVerticesGraph implements Graph<String> {
+public class ConcreteVerticesGraph<L> implements Graph<L> {
 
     private final List<Vertex> vertices = new ArrayList<>();
 
@@ -45,11 +45,13 @@ public class ConcreteVerticesGraph implements Graph<String> {
     private void checkRep() {
         for (Vertex vertex : vertices) {
             assert (vertex.ThisVertex() != null);
-            for (Map.Entry<String, Integer> entry : vertex.sources().entrySet()) {
+            Map<L, Integer> sources = vertex.sources();
+            for (Map.Entry<L, Integer> entry : sources.entrySet()) {
                 assert (entry.getKey() != null);
                 assert (entry.getValue() > 0);
             }
-            for (Map.Entry<String, Integer> entry : vertex.targets().entrySet()) {
+            Map<L, Integer> targets = vertex.targets();
+            for (Map.Entry<L, Integer> entry : targets.entrySet()) {
                 assert (entry.getKey() != null);
                 assert (entry.getValue() > 0);
             }
@@ -57,7 +59,7 @@ public class ConcreteVerticesGraph implements Graph<String> {
     }
 
     @Override
-    public boolean add(String vertex) {
+    public boolean add(L vertex) {
         for (Vertex V : vertices) {
             if (vertex.equals(V.ThisVertex()))
                 return false;
@@ -69,10 +71,11 @@ public class ConcreteVerticesGraph implements Graph<String> {
     }
 
     @Override
-    public int set(String source, String target, int weight) {
+    public int set(L source, L target, int weight) {
         if (weight < 0)
-            throw new Exception("Negative weight");
-        Vertex from, to;
+            throw new RuntimeException("Negative weight");
+        Vertex from = new Vertex(source);
+        Vertex to = new Vertex(target);
         for (Vertex vertex : vertices) {
             if (vertex.equals(source))
                 from = vertex;
@@ -92,7 +95,7 @@ public class ConcreteVerticesGraph implements Graph<String> {
     }
 
     @Override
-    public boolean remove(String vertex) {
+    public boolean remove(L vertex) {
         for (Vertex THIS : vertices) {
             if (THIS.ThisVertex().equals(vertex)) {
                 for (Vertex v : vertices) {
@@ -105,6 +108,7 @@ public class ConcreteVerticesGraph implements Graph<String> {
                         v.removeInEdge(THIS);
                     }
                 }
+                vertices.remove(THIS);
                 checkRep();
                 return true;
             }
@@ -114,22 +118,44 @@ public class ConcreteVerticesGraph implements Graph<String> {
     }
 
     @Override
-    public Set<String> vertices() {
-        throw new RuntimeException("not implemented");
+    public Set<L> vertices() {
+        Set<L> VERTICES = new HashSet<>();
+        for (Vertex vertex : vertices)
+            VERTICES.add((L) vertex.ThisVertex());
+        checkRep();
+        return VERTICES;
     }
 
     @Override
-    public Map<String, Integer> sources(String target) {
-        throw new RuntimeException("not implemented");
+    public Map<L, Integer> sources(L target) {
+        Map<L, Integer> sources = new HashMap<>();
+        for (Vertex vertex : vertices) {
+            if (vertex.ThisVertex().equals(target)) {
+                sources.putAll(vertex.sources());
+                break;
+            }
+        }
+        checkRep();
+        return sources;
     }
 
     @Override
-    public Map<String, Integer> targets(String source) {
-        throw new RuntimeException("not implemented");
+    public Map<L, Integer> targets(L source) {
+        Map<L, Integer> targets = new HashMap<>();
+        for (Vertex vertex : vertices) {
+            if (vertex.ThisVertex().equals(source)) {
+                targets.putAll(vertex.targets());
+                break;
+            }
+        }
+        checkRep();
+        return targets;
     }
 
-    // TODO toString()
-
+    // TODO toL()
+    public String toString() {
+        return "This graph has " + vertices.size() + " vertices";
+    }
 }
 
 /**
@@ -140,12 +166,12 @@ public class ConcreteVerticesGraph implements Graph<String> {
  * PS2 instructions: the specification and implementation of this class is up to
  * you.
  */
-class Vertex<String> {
+class Vertex<L> {
 
     // TODO fields
-    private String ThisVertex;
-    private Map<String, Integer> inEdges = new HashMap<>();
-    private Map<String, Integer> outEdges = new HashMap<>();
+    private L ThisVertex;
+    private Map<L, Integer> inEdges = new HashMap<>();
+    private Map<L, Integer> outEdges = new HashMap<>();
 
     // Abstraction function:
     // TODO
@@ -163,37 +189,37 @@ class Vertex<String> {
     // Edges CAN'T be modified from the outside
 
     // TODO constructor
-    Vertex(String label) {
-        this.ThisVertex = label;
+    Vertex(L label) {
+        ThisVertex = label;
     }
 
     // TODO checkRep
     private void checkRep() {
-        for (String key : inEdges.keySet())
+        for (L key : inEdges.keySet())
             assert (inEdges.get(key) > 0);
-        for (String key : outEdges.keySet())
+        for (L key : outEdges.keySet())
             assert (outEdges.get(key) > 0);
     }
 
     // TODO methods
-    public String ThisVertex() {
+    public L ThisVertex() {
         return ThisVertex;
     }
 
-    public Map<String, Integer> sources() {
-        Map<String, Integer> sources = new HashMap<>();
+    public Map<L, Integer> sources() {
+        Map<L, Integer> sources = new HashMap<>();
         sources.putAll(inEdges); // 深拷贝
         return sources;
     }
 
-    public Map<String, Integer> targets() {
-        Map<String, Integer> targets = new HashMap<>();
+    public Map<L, Integer> targets() {
+        Map<L, Integer> targets = new HashMap<>();
         targets.putAll(outEdges); // 深拷贝
         return targets;
     }
 
-    public int setInEdge(String source, int weight) {
-        for (String key : inEdges.keySet()) {
+    public int setInEdge(L source, int weight) {
+        for (L key : inEdges.keySet()) {
             if (key.equals(source)) {
                 int lastEdgeWeight = inEdges.get(key);
                 inEdges.remove(key);
@@ -206,8 +232,8 @@ class Vertex<String> {
         return 0;
     }
 
-    public int setOutEdge(String target, int weight) {
-        for (String key : outEdges.keySet()) {
+    public int setOutEdge(L target, int weight) {
+        for (L key : outEdges.keySet()) {
             if (key.equals(target)) {
                 int lastEdgeWeight = outEdges.get(key);
                 outEdges.remove(key);
@@ -220,7 +246,7 @@ class Vertex<String> {
         return 0;
     }
 
-    public int removeInEdge(String source) {
+    public int removeInEdge(L source) {
         if (!inEdges.containsKey(source)) {
             return 0;
         }
@@ -230,7 +256,7 @@ class Vertex<String> {
         return lastEdgeWeight;
     }
 
-    public int removeOutEdge(String target) {
+    public int removeOutEdge(L target) {
         if (!outEdges.containsKey(target)) {
             return 0;
         }
@@ -240,9 +266,9 @@ class Vertex<String> {
         return lastEdgeWeight;
     }
 
-    // TODO toString()
+    // TODO toL()
     @Override
-    public String toString() {
+    public L toString() {
         return this.ThisVertex;
     }
 
