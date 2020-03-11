@@ -3,7 +3,6 @@
  */
 package P1.graph;
 
-import java.lang.*;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,28 +22,95 @@ public class ConcreteVerticesGraph implements Graph<String> {
 
     // Abstraction function:
     // TODO
+    // the List vertices represents the nodes in the graph
+    // the class Vertex contains edges to or from ThisVertex
+
     // Representation invariant:
     // TODO
+    // the weight must be non-negative
+    // the total number of TO edges must be the same with the FROM edges
+    // ThisVertex of the vertex can't be null
+
     // Safety from rep exposure:
     // TODO
+    // the vertex class can't be gotten by outside
+    // make the vertices be private and final and immutable
 
     // TODO constructor
+    ConcreteVerticesGraph() {
+
+    }
 
     // TODO checkRep
+    private void checkRep() {
+        for (Vertex vertex : vertices) {
+            assert (vertex.ThisVertex() != null);
+            for (Map.Entry<String, Integer> entry : vertex.sources().entrySet()) {
+                assert (entry.getKey() != null);
+                assert (entry.getValue() > 0);
+            }
+            for (Map.Entry<String, Integer> entry : vertex.targets().entrySet()) {
+                assert (entry.getKey() != null);
+                assert (entry.getValue() > 0);
+            }
+        }
+    }
 
     @Override
     public boolean add(String vertex) {
-        throw new RuntimeException("not implemented");
+        for (Vertex V : vertices) {
+            if (vertex.equals(V.ThisVertex()))
+                return false;
+        }
+        Vertex newVertex = new Vertex(vertex);
+        vertices.add(newVertex);
+        checkRep();
+        return true;
     }
 
     @Override
     public int set(String source, String target, int weight) {
-        throw new RuntimeException("not implemented");
+        if (weight < 0)
+            throw new Exception("Negative weight");
+        Vertex from, to;
+        for (Vertex vertex : vertices) {
+            if (vertex.equals(source))
+                from = vertex;
+            if (vertex.equals(target))
+                to = vertex;
+        }
+        int lastEdgeWeight;
+        if (weight > 0) {
+            lastEdgeWeight = from.setOutEdge(target, weight);
+            lastEdgeWeight = to.setInEdge(source, weight);
+        } else {
+            lastEdgeWeight = from.removeOutEdge(target);
+            lastEdgeWeight = to.removeInEdge(source);
+        }
+        checkRep();
+        return lastEdgeWeight;
     }
 
     @Override
     public boolean remove(String vertex) {
-        throw new RuntimeException("not implemented");
+        for (Vertex THIS : vertices) {
+            if (THIS.ThisVertex().equals(vertex)) {
+                for (Vertex v : vertices) {
+                    if (THIS.sources().containsKey(v)) {
+                        // THIS.removeInEdge(v);
+                        v.removeOutEdge(THIS);
+                    }
+                    if (THIS.targets().containsKey(v)) {
+                        // THIS.removeOutEdge(v);
+                        v.removeInEdge(THIS);
+                    }
+                }
+                checkRep();
+                return true;
+            }
+        }
+        checkRep();
+        return false;
     }
 
     @Override
@@ -158,7 +224,7 @@ class Vertex<String> {
         if (!inEdges.containsKey(source)) {
             return 0;
         }
-        int lastEdgeWeight = inEdges.get(source)
+        int lastEdgeWeight = inEdges.get(source);
         inEdges.remove(source);
         checkRep();
         return lastEdgeWeight;
@@ -168,7 +234,7 @@ class Vertex<String> {
         if (!outEdges.containsKey(target)) {
             return 0;
         }
-        int lastEdgeWeight = outEdges.get(target)
+        int lastEdgeWeight = outEdges.get(target);
         outEdges.remove(target);
         checkRep();
         return lastEdgeWeight;
