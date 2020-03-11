@@ -16,9 +16,9 @@ import java.util.Set;
  * <p>
  * PS2 instructions: you MUST use the provided rep.
  */
-public class ConcreteEdgesGraph implements Graph<String> {
+public class ConcreteEdgesGraph<L> implements Graph<L> {
 
-    private final Set<String> vertices = new HashSet<>();
+    private final Set<L> vertices = new HashSet<>();
     private final List<Edge> edges = new ArrayList<>();
 
     // Abstraction function:
@@ -46,14 +46,14 @@ public class ConcreteEdgesGraph implements Graph<String> {
 
     // TODO checkRep
     private void checkRep() {
-        for (String vertex : vertices)
+        for (L vertex : vertices)
             assert (vertex != null);
         for (Edge edge : edges)
             assert (edge != null);
     }
 
     @Override
-    public boolean add(String vertex) {
+    public boolean add(L vertex) {
         if (vertices.contains(vertex))
             return false;
         vertices.add(vertex);
@@ -61,9 +61,9 @@ public class ConcreteEdgesGraph implements Graph<String> {
     }
 
     @Override
-    public int set(String source, String target, int weight) {
+    public int set(L source, L target, int weight) {
         if (weight < 0)
-            throw new Exception("Negative weight");
+            throw new RuntimeException("Negative weight");
         // Find the same edge
         for (Edge edge : edges) {
             if (edge.sameEdge(source, target)) {
@@ -86,7 +86,7 @@ public class ConcreteEdgesGraph implements Graph<String> {
     }
 
     @Override
-    public boolean remove(String vertex) {
+    public boolean remove(L vertex) {
         if (!vertices.contains(vertex))
             return false;
         edges.removeIf(edge -> edge.source().equals(vertex) || edge.target().equals(vertex));
@@ -96,16 +96,16 @@ public class ConcreteEdgesGraph implements Graph<String> {
     }
 
     @Override
-    public Set<String> vertices() {
+    public Set<L> vertices() {
         return new HashSet<>(vertices);
     }
 
     @Override
-    public Map<String, Integer> sources(String target) {
-        Map<String, Integer> sources = new HashMap<>();
+    public Map<L, Integer> sources(L target) {
+        Map<L, Integer> sources = new HashMap<>();
         for (Edge edge : edges) {
             if (target.equals(edge.target())) {
-                sources.put(edge.source(), edge.weight());
+                sources.put((L) edge.source(), edge.weight());
             }
         }
         checkRep();
@@ -113,18 +113,18 @@ public class ConcreteEdgesGraph implements Graph<String> {
     }
 
     @Override
-    public Map<String, Integer> targets(String source) {
-        Map<String, Integer> targets = new HashMap<>();
+    public Map<L, Integer> targets(L source) {
+        Map<L, Integer> targets = new HashMap<>();
         for (Edge edge : edges) {
             if (source.equals(edge.source())) {
-                targets.put(edge.target(), edge.weight());
+                targets.put((L) edge.target(), edge.weight());
             }
         }
         checkRep();
         return targets;
     }
 
-    // TODO toString()
+    // TODO toL()
     @Override
     public String toString() {
         return "the number of vertices is  " + vertices.size() + " ,the number of edges is " + edges.size();
@@ -195,7 +195,7 @@ class Edge<L> {
         return source == this.source && target == this.target;
     }
 
-    // TODO toString()
+    // TODO toL()
     @Override
     public String toString() {
         return "Source: " + this.source + "; Target: " + this.target + "; Weight: " + this.weight;
