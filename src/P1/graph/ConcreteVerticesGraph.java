@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public class ConcreteVerticesGraph<L> implements Graph<L> {
 
-    private final List<Vertex> vertices = new ArrayList<>();
+    private final List<Vertex<L>> vertices = new ArrayList<>();
 
     // Abstraction function:
     // TODO
@@ -43,118 +43,121 @@ public class ConcreteVerticesGraph<L> implements Graph<L> {
 
     // TODO checkRep
     private void checkRep() {
-        for (Vertex vertex : vertices) {
-            assert (vertex.ThisVertex() != null);
-            Map<L, Integer> sources = vertex.sources();
-            for (Map.Entry<L, Integer> entry : sources.entrySet()) {
-                assert (entry.getKey() != null);
-                assert (entry.getValue() > 0);
-            }
-            Map<L, Integer> targets = vertex.targets();
-            for (Map.Entry<L, Integer> entry : targets.entrySet()) {
-                assert (entry.getKey() != null);
-                assert (entry.getValue() > 0);
-            }
-        }
+	for (Vertex<L> vertex : vertices) {
+	    assert (vertex.ThisVertex() != null);
+	    Map<L, Integer> sources = vertex.sources();
+	    for (Map.Entry<L, Integer> entry : sources.entrySet()) {
+		assert (entry.getKey() != null);
+		assert (entry.getValue() > 0);
+	    }
+	    Map<L, Integer> targets = vertex.targets();
+	    for (Map.Entry<L, Integer> entry : targets.entrySet()) {
+		assert (entry.getKey() != null);
+		assert (entry.getValue() > 0);
+	    }
+	}
     }
 
     @Override
     public boolean add(L vertex) {
-        for (Vertex V : vertices) {
-            if (vertex.equals(V.ThisVertex()))
-                return false;
-        }
-        Vertex newVertex = new Vertex(vertex);
-        vertices.add(newVertex);
-        checkRep();
-        return true;
+	for (Vertex<L> V : vertices) {
+	    if (vertex.equals(V.ThisVertex()))
+		return false;
+	}
+	Vertex<L> newVertex = new Vertex<L>(vertex);
+	vertices.add(newVertex);
+	checkRep();
+	return true;
     }
 
     @Override
     public int set(L source, L target, int weight) {
-        if (weight < 0)
-            throw new RuntimeException("Negative weight");
-        Vertex from = new Vertex(source);
-        Vertex to = new Vertex(target);
-        for (Vertex vertex : vertices) {
-            if (vertex.equals(source))
-                from = vertex;
-            if (vertex.equals(target))
-                to = vertex;
-        }
-        int lastEdgeWeight;
-        if (weight > 0) {
-            lastEdgeWeight = from.setOutEdge(target, weight);
-            lastEdgeWeight = to.setInEdge(source, weight);
-        } else {
-            lastEdgeWeight = from.removeOutEdge(target);
-            lastEdgeWeight = to.removeInEdge(source);
-        }
-        checkRep();
-        return lastEdgeWeight;
+	if (weight < 0)
+	    throw new RuntimeException("Negative weight");
+	if (source.equals(target))
+	    return 0;
+	Vertex<L> from = null, to = null;
+	for (Vertex<L> vertex : vertices) {
+	    if (vertex.ThisVertex().equals(source))
+		from = vertex;
+	    if (vertex.ThisVertex().equals(target))
+		to = vertex;
+	}
+	if (from == null || to == null)
+	    throw new NullPointerException("Inexistent vertex");
+	int lastEdgeWeight;
+	if (weight > 0) {
+	    lastEdgeWeight = from.setOutEdge(target, weight);
+	    lastEdgeWeight = to.setInEdge(source, weight);
+	} else {
+	    lastEdgeWeight = from.removeOutEdge(target);
+	    lastEdgeWeight = to.removeInEdge(source);
+	}
+	checkRep();
+	return lastEdgeWeight;
     }
 
     @Override
     public boolean remove(L vertex) {
-        for (Vertex THIS : vertices) {
-            if (THIS.ThisVertex().equals(vertex)) {
-                for (Vertex v : vertices) {
-                    if (THIS.sources().containsKey(v)) {
-                        // THIS.removeInEdge(v);
-                        v.removeOutEdge(THIS);
-                    }
-                    if (THIS.targets().containsKey(v)) {
-                        // THIS.removeOutEdge(v);
-                        v.removeInEdge(THIS);
-                    }
-                }
-                vertices.remove(THIS);
-                checkRep();
-                return true;
-            }
-        }
-        checkRep();
-        return false;
+	for (Vertex<L> THIS : vertices) {
+	    if (THIS.ThisVertex().equals(vertex)) {
+		for (Vertex<L> v : vertices) {
+		    if (THIS.sources().containsKey(v)) {
+			// THIS.removeInEdge(v);
+			v.removeOutEdge(THIS.ThisVertex());
+		    }
+		    if (THIS.targets().containsKey(v)) {
+			// THIS.removeOutEdge(v);
+			v.removeInEdge(THIS.ThisVertex());
+		    }
+		}
+		vertices.remove(THIS);
+		checkRep();
+		return true;
+	    }
+	}
+	checkRep();
+	return false;
     }
 
     @Override
     public Set<L> vertices() {
-        Set<L> VERTICES = new HashSet<>();
-        for (Vertex vertex : vertices)
-            VERTICES.add((L) vertex.ThisVertex());
-        checkRep();
-        return VERTICES;
+	Set<L> VERTICES = new HashSet<>();
+	for (Vertex<L> vertex : vertices)
+	    VERTICES.add((L) vertex.ThisVertex());
+	checkRep();
+	return VERTICES;
     }
 
     @Override
     public Map<L, Integer> sources(L target) {
-        Map<L, Integer> sources = new HashMap<>();
-        for (Vertex vertex : vertices) {
-            if (vertex.ThisVertex().equals(target)) {
-                sources.putAll(vertex.sources());
-                break;
-            }
-        }
-        checkRep();
-        return sources;
+	Map<L, Integer> sources = new HashMap<>();
+	for (Vertex<L> vertex : vertices) {
+	    if (vertex.ThisVertex().equals(target)) {
+		sources.putAll(vertex.sources());
+		break;
+	    }
+	}
+	checkRep();
+	return sources;
     }
 
     @Override
     public Map<L, Integer> targets(L source) {
-        Map<L, Integer> targets = new HashMap<>();
-        for (Vertex vertex : vertices) {
-            if (vertex.ThisVertex().equals(source)) {
-                targets.putAll(vertex.targets());
-                break;
-            }
-        }
-        checkRep();
-        return targets;
+	Map<L, Integer> targets = new HashMap<>();
+	for (Vertex<L> vertex : vertices) {
+	    if (vertex.ThisVertex().equals(source)) {
+		targets.putAll(vertex.targets());
+		break;
+	    }
+	}
+	checkRep();
+	return targets;
     }
 
     // TODO toL()
     public String toString() {
-        return "This graph has " + vertices.size() + " vertices";
+	return "This graph has " + vertices.size() + " vertices";
     }
 }
 
@@ -190,86 +193,86 @@ class Vertex<L> {
 
     // TODO constructor
     Vertex(L label) {
-        ThisVertex = label;
+	ThisVertex = label;
     }
 
     // TODO checkRep
     private void checkRep() {
-        for (L key : inEdges.keySet())
-            assert (inEdges.get(key) > 0);
-        for (L key : outEdges.keySet())
-            assert (outEdges.get(key) > 0);
+	for (L key : inEdges.keySet())
+	    assert (inEdges.get(key) > 0);
+	for (L key : outEdges.keySet())
+	    assert (outEdges.get(key) > 0);
     }
 
     // TODO methods
     public L ThisVertex() {
-        return ThisVertex;
+	return ThisVertex;
     }
 
     public Map<L, Integer> sources() {
-        Map<L, Integer> sources = new HashMap<>();
-        sources.putAll(inEdges); // 深拷贝
-        return sources;
+	Map<L, Integer> sources = new HashMap<>();
+	sources.putAll(inEdges); // 深拷贝
+	return sources;
     }
 
     public Map<L, Integer> targets() {
-        Map<L, Integer> targets = new HashMap<>();
-        targets.putAll(outEdges); // 深拷贝
-        return targets;
+	Map<L, Integer> targets = new HashMap<>();
+	targets.putAll(outEdges); // 深拷贝
+	return targets;
     }
 
     public int setInEdge(L source, int weight) {
-        for (L key : inEdges.keySet()) {
-            if (key.equals(source)) {
-                int lastEdgeWeight = inEdges.get(key);
-                inEdges.remove(key);
-                inEdges.put(source, weight);
-                return lastEdgeWeight;
-            }
-        }
-        inEdges.put(source, weight);
-        checkRep();
-        return 0;
+	for (L key : inEdges.keySet()) {
+	    if (key.equals(source)) {
+		int lastEdgeWeight = inEdges.get(key);
+		inEdges.remove(key);
+		inEdges.put(source, weight);
+		return lastEdgeWeight;
+	    }
+	}
+	inEdges.put(source, weight);
+	checkRep();
+	return 0;
     }
 
     public int setOutEdge(L target, int weight) {
-        for (L key : outEdges.keySet()) {
-            if (key.equals(target)) {
-                int lastEdgeWeight = outEdges.get(key);
-                outEdges.remove(key);
-                outEdges.put(target, weight);
-                return lastEdgeWeight;
-            }
-        }
-        outEdges.put(target, weight);
-        checkRep();
-        return 0;
+	for (L key : outEdges.keySet()) {
+	    if (key.equals(target)) {
+		int lastEdgeWeight = outEdges.get(key);
+		outEdges.remove(key);
+		outEdges.put(target, weight);
+		return lastEdgeWeight;
+	    }
+	}
+	outEdges.put(target, weight);
+	checkRep();
+	return 0;
     }
 
     public int removeInEdge(L source) {
-        if (!inEdges.containsKey(source)) {
-            return 0;
-        }
-        int lastEdgeWeight = inEdges.get(source);
-        inEdges.remove(source);
-        checkRep();
-        return lastEdgeWeight;
+	if (!inEdges.containsKey(source)) {
+	    return 0;
+	}
+	int lastEdgeWeight = inEdges.get(source);
+	inEdges.remove(source);
+	checkRep();
+	return lastEdgeWeight;
     }
 
     public int removeOutEdge(L target) {
-        if (!outEdges.containsKey(target)) {
-            return 0;
-        }
-        int lastEdgeWeight = outEdges.get(target);
-        outEdges.remove(target);
-        checkRep();
-        return lastEdgeWeight;
+	if (!outEdges.containsKey(target)) {
+	    return 0;
+	}
+	int lastEdgeWeight = outEdges.get(target);
+	outEdges.remove(target);
+	checkRep();
+	return lastEdgeWeight;
     }
 
     // TODO toL()
     @Override
-    public L toString() {
-        return this.ThisVertex;
+    public String toString() {
+	return ThisVertex.toString();
     }
 
 }
