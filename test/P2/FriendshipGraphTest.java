@@ -19,15 +19,15 @@ public abstract class FriendshipGraphTest {
 	Person ben = new Person("Ben");
 	Person kramer = new Person("Kramer");
 
-	graph.addVertex(rachel);
-	graph.addVertex(ross);
-	graph.addVertex(ben);
-	graph.addVertex(kramer);
+	assertEquals(true, graph.addVertex(rachel));
+	assertEquals(true, graph.addVertex(ross));
+	assertEquals(true, graph.addVertex(ben));
+	assertEquals(true, graph.addVertex(kramer));
 
-	graph.addEdge(rachel, ross);
-	graph.addEdge(ross, rachel);
-	graph.addEdge(ross, ben);
-	graph.addEdge(ben, ross);
+	assertEquals(0, graph.addEdge(rachel, ross));
+	assertEquals(0, graph.addEdge(ross, rachel));
+	assertEquals(0, graph.addEdge(ross, ben));
+	assertEquals(0, graph.addEdge(ben, ross));
 
 	assertEquals(1, graph.getDistance(rachel, ross));
 	assertEquals(2, graph.getDistance(rachel, ben));
@@ -53,27 +53,27 @@ public abstract class FriendshipGraphTest {
 	Person i = new Person("I");
 	Person j = new Person("J");
 
-	graph.addVertex(a);
-	graph.addVertex(b);
-	graph.addVertex(c);
-	graph.addVertex(d);
-	graph.addVertex(e);
-	graph.addVertex(f);
-	graph.addVertex(g);
-	graph.addVertex(h);
-	graph.addVertex(i);
-	graph.addVertex(j);
+	assertEquals(true, graph.addVertex(a));
+	assertEquals(true, graph.addVertex(b));
+	assertEquals(true, graph.addVertex(c));
+	assertEquals(true, graph.addVertex(d));
+	assertEquals(true, graph.addVertex(e));
+	assertEquals(true, graph.addVertex(f));
+	assertEquals(true, graph.addVertex(g));
+	assertEquals(true, graph.addVertex(h));
+	assertEquals(true, graph.addVertex(i));
+	assertEquals(true, graph.addVertex(j));
 
-	graph.addEdge(a, b);
-	graph.addEdge(a, d);
-	graph.addEdge(b, d);
-	graph.addEdge(c, d);
-	graph.addEdge(d, e);
-	graph.addEdge(c, f);
-	graph.addEdge(e, g);
-	graph.addEdge(f, g);
-	graph.addEdge(h, i);
-	graph.addEdge(i, j);
+	assertEquals(0, graph.addEdge(a, b));
+	assertEquals(0, graph.addEdge(a, d));
+	assertEquals(0, graph.addEdge(b, d));
+	assertEquals(0, graph.addEdge(c, d));
+	assertEquals(0, graph.addEdge(d, e));
+	assertEquals(0, graph.addEdge(c, f));
+	assertEquals(0, graph.addEdge(e, g));
+	assertEquals(0, graph.addEdge(f, g));
+	assertEquals(0, graph.addEdge(h, i));
+	assertEquals(0, graph.addEdge(i, j));
 
 	assertEquals(2, graph.getDistance(a, e));
 	assertEquals(1, graph.getDistance(a, d));
