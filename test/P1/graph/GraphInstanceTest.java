@@ -27,7 +27,12 @@ import org.junit.rules.ExpectedException;
 public abstract class GraphInstanceTest {
 
     // Testing strategy
-    // TODO
+    // add() : the same / different vertices
+    // remove() : to remove existing / in-existing vertices
+    // set() : negative weight / in-existing vertices should be wrong, and test the updated weight
+    // vertices() : check the return vertices with the reality
+    // source() target() : empty_map , by the way check the set()
+    // Execute a complete test
 
     /**
      * Overridden by implementation-specific test classes.
