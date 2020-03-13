@@ -134,8 +134,10 @@ public class GraphPoet {
 	Map<String, Integer> sources, targets;
 	Set<String> intersection;
 	for (int i = 1; i < words.length; i++) {
-	    if (!vertices.contains(words[i - 1].toLowerCase()) || !vertices.contains(words[i].toLowerCase()))
+	    if (!vertices.contains(words[i - 1].toLowerCase()) || !vertices.contains(words[i].toLowerCase())) {
+		answer += " " + words[i];
 		continue;
+	    }
 	    targets = graph.targets(words[i - 1].toLowerCase());
 	    sources = graph.sources(words[i].toLowerCase());
 	    intersection = sources.keySet();
