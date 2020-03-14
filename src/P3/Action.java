@@ -1,33 +1,54 @@
 package P3;
 
 public interface Action {
+
     /**
      * generate a new Action of one piece
+     * do the action
      * @param gameType
+     * @param player
      * @param actionType
-     * @return
+     * @param piece
+     * @param positions
+     * @return an object of a type of Action(chessAction or goAction)
      */
-    public static Action newAction(String gameType, String actionType) {
-        return gameType == "chess" ? (new chessAction(actionType)) : (new goAction(actionType));
+    public static Action newAction(String gameType, Player player, String actionType, Piece piece,
+            Position... positions) {
+        return gameType == "chess" ? (new chessAction(player, actionType, piece, positions))
+                : (new goAction(player, actionType, piece, positions));
     }
 
     /**
+     * @param piece
+     * @return true if the putting is legal
+     */
+    public boolean put(Piece piece);
+
+    /**
      * move one piece to a chose position
-     * @param positions
      * @return true if the move is legal
      */
-    public boolean move(Position... positions);
+    public boolean move();
 
     /**
      * capture a piece by another piece(chess) or a group of pieces(go)
-     * @param positions
      * @return true if the capture is legal
      */
-    public boolean capture(Position... positions);
+    public boolean capture();
 
     /**
      * ask the action's type
      * @return the action's type
      */
     public String actionType();
+
+    /**
+     * @return the position which action appears
+     */
+    public Position position();
+
+    /**
+     * @return who does the action
+     */
+    public Player player();
 }

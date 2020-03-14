@@ -2,13 +2,29 @@ package P3;
 
 public class Piece {
     private final String name;
-    private Position position;
+    private final boolean firstFlag;
+    private Position position = null;
+    private final Player player;
 
     /**
      * @param pieceName
+     * @param firstFlag
+     * @param player
      */
-    Piece(String pieceName) {
+    Piece(String pieceName, boolean firstFlag, Player player) {
         this.name = pieceName;
+        this.firstFlag = firstFlag;
+        this.player = player;
+        checkRep();
+    }
+
+    /**
+     * name can't be ""
+     * player can't be null
+     */
+    private void checkRep() {
+        assert (name != "");
+        assert (player != null);
     }
 
     /**
@@ -23,6 +39,20 @@ public class Piece {
      */
     public Position position() {
         return this.position;
+    }
+
+    /**
+     * @return the player who the piece belongs to
+     */
+    public Player player() {
+        return this.player;
+    }
+
+    /**
+     * @return true is the piece belongs to first player, false if not
+     */
+    public boolean isFirst() {
+        return this.firstFlag;
     }
 
     /**

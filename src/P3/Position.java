@@ -7,6 +7,14 @@ public class Position {
     Position(int X, int Y) {
         this.x = X;
         this.y = Y;
+        checkRep();
+    }
+
+    /**
+     * x, y must be non-negative
+     */
+    private void checkRep() {
+        assert (x >= 0 && y >= 0);
     }
 
     /**
@@ -28,6 +36,15 @@ public class Position {
      */
     public Piece piece() {
         return this.piece;
+    }
+
+    /**
+     * @return player if the position is occupied, null if it's free
+     */
+    public Player player() {
+        if (this.piece == null)
+            return null;
+        return this.piece.player();
     }
 
     /**
