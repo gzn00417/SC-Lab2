@@ -76,89 +76,89 @@ import P1.graph.Graph;
  */
 public class GraphPoet {
 
-    private final Graph<String> graph = Graph.empty();
+	private final Graph<String> graph = Graph.empty();
 
-    // Abstraction function:
-    // the graph stores the corpus of the text
-    // the vertices are the words in the text, the edges are the ajacencies whose
-    // weight is the time "w1" is followed by "w2"
+	// Abstraction function:
+	// the graph stores the corpus of the text
+	// the vertices are the words in the text, the edges are the ajacencies whose
+	// weight is the time "w1" is followed by "w2"
 
-    // Representation invariant:
-    // the vertices can't be empty , ' ' or the '\n'
-    // words must be lowercase
+	// Representation invariant:
+	// the vertices can't be empty , ' ' or the '\n'
+	// words must be lowercase
 
-    // Safety from rep exposure:
-    // set the graph private, do not provide public methods to modify it
+	// Safety from rep exposure:
+	// set the graph private, do not provide public methods to modify it
 
-    /**
-     * Create a new poet with the graph from corpus (as described above).
-     * 
-     * @param corpus text file from which to derive the poet's affinity graph
-     * @throws IOException if the corpus file cannot be found or read
-     */
-    public GraphPoet(File corpus) throws IOException {
-	BufferedReader reader = new BufferedReader(new FileReader(corpus));
-	String line = "";
-	String[] words;
-	while ((line = reader.readLine()) != null) {
-	    words = line.split(" ");
-	    for (int i = 0; i < words.length; i++) {
-		graph.add(words[i].toLowerCase());
-		if (i > 0) {
-		    int lastEdgeWeight = graph.set(words[i - 1].toLowerCase(), words[i].toLowerCase(), 1);
-		    if (lastEdgeWeight != 0)
-			graph.set(words[i - 1].toLowerCase(), words[i].toLowerCase(), lastEdgeWeight + 1);
+	/**
+	 * Create a new poet with the graph from corpus (as described above).
+	 * 
+	 * @param corpus text file from which to derive the poet's affinity graph
+	 * @throws IOException if the corpus file cannot be found or read
+	 */
+	public GraphPoet(File corpus) throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader(corpus));
+		String line = "";
+		String[] words;
+		while ((line = reader.readLine()) != null) {
+			words = line.split(" ");
+			for (int i = 0; i < words.length; i++) {
+				graph.add(words[i].toLowerCase());
+				if (i > 0) {
+					int lastEdgeWeight = graph.set(words[i - 1].toLowerCase(), words[i].toLowerCase(), 1);
+					if (lastEdgeWeight != 0)
+						graph.set(words[i - 1].toLowerCase(), words[i].toLowerCase(), lastEdgeWeight + 1);
+				}
+			}
 		}
-	    }
+		checkRep();
 	}
-	checkRep();
-    }
 
-    // TODO checkRep
-    private void checkRep() {
-	Set<String> vertices = graph.vertices();
-	for (String vertex : vertices)
-	    assert (vertex != null);
-    }
+	// TODO checkRep
+	private void checkRep() {
+		Set<String> vertices = graph.vertices();
+		for (String vertex : vertices)
+			assert (vertex != null);
+	}
 
-    /**
-     * Generate a poem.
-     * 
-     * @param input string from which to create the poem
-     * @return poem (as described above)
-     */
-    public String poem(String input) {
-	String[] words = input.split(" ");
-	String answer = words[0];
-	Set<String> vertices = graph.vertices();
-	Map<String, Integer> sources, targets;
-	Set<String> intersection;
-	for (int i = 1; i < words.length; i++) {
-	    if (!vertices.contains(words[i - 1].toLowerCase()) || !vertices.contains(words[i].toLowerCase())) {
-		answer += " " + words[i];
-		continue;
-	    }
-	    targets = graph.targets(words[i - 1].toLowerCase());
-	    sources = graph.sources(words[i].toLowerCase());
-	    intersection = sources.keySet();
-	    intersection.retainAll(targets.keySet());
-	    if (intersection.isEmpty()) {
-		answer += " " + words[i];
-		continue;
-	    }
-	    int maxBridge = Integer.MIN_VALUE;
-	    String bridge = "";
-	    for (String key : intersection) {
-		if (sources.get(key) + targets.get(key) > maxBridge) {
-		    maxBridge = sources.get(key) + targets.get(key);
-		    bridge = key;
+	/**
+	 * Generate a poem.
+	 * 
+	 * @param input string from which to create the poem
+	 * @return poem (as described above)
+	 */
+	public String poem(String input) {
+		String[] words = input.split(" ");
+		String answer = words[0];
+		Set<String> vertices = graph.vertices();
+		Map<String, Integer> sources, targets;
+		Set<String> intersection;
+		for (int i = 1; i < words.length; i++) {
+			if (!vertices.contains(words[i - 1].toLowerCase()) || !vertices.contains(words[i].toLowerCase())) {
+				answer += " " + words[i];
+				continue;
+			}
+			targets = graph.targets(words[i - 1].toLowerCase());
+			sources = graph.sources(words[i].toLowerCase());
+			intersection = sources.keySet();
+			intersection.retainAll(targets.keySet());
+			if (intersection.isEmpty()) {
+				answer += " " + words[i];
+				continue;
+			}
+			int maxBridge = Integer.MIN_VALUE;
+			String bridge = "";
+			for (String key : intersection) {
+				if (sources.get(key) + targets.get(key) > maxBridge) {
+					maxBridge = sources.get(key) + targets.get(key);
+					bridge = key;
+				}
+			}
+			answer += " " + bridge + " " + words[i];
 		}
-	    }
-	    answer += " " + bridge + " " + words[i];
+		return answer;
 	}
-	return answer;
-    }
 
-    // TODO toString()
+	// TODO toString()
 
 }
