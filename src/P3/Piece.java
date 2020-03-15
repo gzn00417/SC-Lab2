@@ -64,6 +64,7 @@ public class Piece {
         if (newPosition == null)
             return false;
         this.position = newPosition;
+        checkRep();
         return true;
     }
 }

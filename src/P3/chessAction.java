@@ -5,6 +5,7 @@ public class chessAction implements Action {
     private final Position[] positions;
     private final Player player;
     private final Piece piece;
+    private boolean actionSuccess;
 
     /**
      * create and finish the action
@@ -20,7 +21,7 @@ public class chessAction implements Action {
         this.actionType = actionType;
         switch (actionType) {
             case "put":
-                put(piece);
+                put();
                 break;
             case "move":
                 move();
@@ -47,21 +48,50 @@ public class chessAction implements Action {
     }
 
     @Override
-    public boolean put(Piece piece) {
+    public void put() {
         Position target = positions[0];
-        return false;
+        // put requirement:
+        // 1. the piece of the target can't be null
+        // 2. the putting piece can't be null
+        if (this.piece.position() == null && target.piece() != null) {
+            this.piece.modifyPositionAs(target);
+            target.modifyPieceAs(this.piece);
+            actionSuccess = true;
+            return;
+        }
+        actionSuccess = false;
     }
 
     @Override
-    public boolean move() {
+    public void move() {
         Position source = positions[0], target = positions[1];
-        return true;
+        // move requirement:
+        // 1. the piece of the source can't be null
+        // 2. the piece of the target must be null (except capturing)
+        if (source.piece() != null && target.piece() == null) {
+            source.piece().modifyPositionAs(target);
+            target.modifyPieceAs(source.piece());
+            actionSuccess = true;
+            return;
+        }
+        actionSuccess = false;
     }
 
     @Override
-    public boolean capture() {
+    public void capture() {
         Position source = positions[0], target = positions[1];
-        return true;
+        // capture requirement:
+        // 1. the target can't be null
+        // 2. the source can't be null
+        if (target.piece() != null && source.piece() != null) {
+            target.piece().modifyPositionAs(null); // the piece captured removed
+            source.piece().modifyPositionAs(target); // source piece move to the target
+            target.modifyPieceAs(source.piece());// move the piece, this must be done before source's piece be null
+            source.modifyPieceAs(null);
+            actionSuccess = true;
+            return;
+        }
+        actionSuccess = false;
     }
 
     @Override
@@ -71,14 +101,17 @@ public class chessAction implements Action {
 
     @Override
     public Position position() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.position();
     }
 
     @Override
     public Player player() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.player;
+    }
+
+    @Override
+    public boolean askSuccess() {
+        return this.actionSuccess;
     }
 
 }

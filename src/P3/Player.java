@@ -100,4 +100,15 @@ public class Player {
     public String name() {
         return this.playerName;
     }
+
+    /**
+     * @return a free piece belonging to the player
+     */
+    public Piece freePiece() {
+        for (Piece piece : this.pieces) {
+            if (piece.position() == null)
+                return piece;
+        }
+        return null;
+    }
 }
