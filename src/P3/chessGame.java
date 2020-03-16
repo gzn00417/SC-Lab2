@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class chessGame implements Game {
     public final String gameType = "chess";
-    private Player player1, player2;
-    private final Board board;
+    public Player player1, player2;
+    public Board board;
     private final int CHESS_BOARD_SIDE = 8;
 
     chessGame() {

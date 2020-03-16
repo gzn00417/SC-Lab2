@@ -3,7 +3,7 @@ package P3;
 public class Piece {
     private final String name;
     private final boolean firstFlag;
-    private Position position = null;
+    public Position position = null;
     private final Player player;
 
     /**

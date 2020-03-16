@@ -2,7 +2,7 @@ package P3;
 
 public class Position {
     private final int x, y;
-    private Piece piece = null;
+    public Piece piece = null;
 
     Position(int X, int Y) {
         this.x = X;

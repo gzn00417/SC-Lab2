@@ -9,8 +9,8 @@ public class Player {
     private final String playerName;
     private final boolean First;
     private final Game game;
-    private final Set<Piece> pieces;
-    private final List<Action> actions = new ArrayList<>();
+    public Set<Piece> pieces;
+    public List<Action> actions = new ArrayList<>();
 
     /**
      * initialize a Player and set his pieces

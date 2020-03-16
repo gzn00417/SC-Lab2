@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class goGame implements Game {
     public final String gameType = "go";
-    private Player player1 = null, player2 = null;
-    private final Board board;
+    public Player player1 = null, player2 = null;
+    public Board board;
     private final int GO_BOARD_SIDE = 19, GO_POINTS = 361;
 
     goGame() {
