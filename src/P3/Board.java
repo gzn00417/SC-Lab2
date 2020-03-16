@@ -36,12 +36,12 @@ public class Board {
             }
         }
     }
-    
+
     /**
      * @return N
      */
     public int boardLength() {
-	return this.N;
+        return this.N;
     }
 
     /**

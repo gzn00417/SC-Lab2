@@ -21,7 +21,7 @@ public class chessAction implements Action {
         this.actionType = actionType;
         switch (actionType) {
             case "put":
-                this.actionSuccess = (piece!=null) && put();
+                this.actionSuccess = (piece != null) && put();
                 break;
             case "move":
                 this.actionSuccess = move();
@@ -46,7 +46,8 @@ public class chessAction implements Action {
         assert (actionType.equals("put") || actionType.equals("move") || actionType.equals("capture"));
         assert (positions.length == 1 || positions.length == 2);
         assert (player != null);
-        if (actionType.equals("put")) assert (piece != null);
+        if (actionType.equals("put"))
+            assert (piece != null);
     }
 
     @Override
@@ -88,7 +89,8 @@ public class chessAction implements Action {
         // 2. the source can't be null
         // 3. the target must belong to the OPPOSITE
         // 4. the source must belong to this player
-        if (target.piece() != null && source.piece() != null && !target.piece().player().equals(player) && source.piece().player().equals(player)) {
+        if (target.piece() != null && source.piece() != null && !target.piece().player().equals(player)
+                && source.piece().player().equals(player)) {
             target.piece().modifyPositionAs(null); // the piece capturing removed
             source.piece().modifyPositionAs(target); // captured piece move to the target
             target.modifyPieceAs(source.piece());// move the piece, this must be done before source's piece be null

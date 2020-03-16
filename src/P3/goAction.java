@@ -21,7 +21,7 @@ public class goAction implements Action {
         this.actionType = actionType;
         switch (actionType) {
             case "put":
-                this.actionSuccess = (piece!=null) && put();
+                this.actionSuccess = (piece != null) && put();
                 break;
             case "move":
                 this.actionSuccess = move();
@@ -46,7 +46,8 @@ public class goAction implements Action {
         assert (actionType.equals("put") || actionType.equals("move") || actionType.equals("capture"));
         assert (positions.length == 1 || positions.length == 2);
         assert (player != null);
-        if (actionType.equals("put")) assert (piece != null);
+        if (actionType.equals("put"))
+            assert (piece != null);
     }
 
     @Override
