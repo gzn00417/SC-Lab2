@@ -23,7 +23,7 @@ public class chessGame implements Game {
      * board can't be null
      */
     private void checkRep() {
-        assert (gameType == "chess");
+        assert (gameType.equals("chess"));
         assert (player1 != null && player2 != null);
         assert (board != null);
     }
@@ -95,7 +95,7 @@ public class chessGame implements Game {
         Set<Piece> pieces = new HashSet<Piece>();
         for (Map.Entry<String, Integer> entry : piecesSumMap.entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
-                String pieceName = (firstFlag ? "W" : "B") + entry.getKey() + i;
+                String pieceName = (firstFlag ? "W" : "B") + entry.getKey() + i; // eg. WB1 BR2 WP3
                 Piece piece = new Piece(pieceName, firstFlag, (firstFlag ? player1 : player2));
                 int[] X = piecesPosMap.get(entry.getKey())[0];
                 int[] Y = piecesPosMap.get(entry.getKey())[1];
@@ -117,19 +117,26 @@ public class chessGame implements Game {
 
     @Override
     public Player player1() {
-        // TODO Auto-generated method stub
-        return null;
+        return player1;
     }
 
     @Override
     public Player player2() {
-        // TODO Auto-generated method stub
-        return null;
+        return player2;
     }
 
     @Override
     public String gameType() {
-        // TODO Auto-generated method stub
-        return null;
+        return gameType;
+    }
+
+    @Override
+    public Board board() {
+        return this.board;
+    }
+
+    @Override
+    public Player choosePlayerByName(String playerName) {
+        return player1().name().equals(playerName) ? player1 : player2;
     }
 }

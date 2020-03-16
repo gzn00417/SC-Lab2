@@ -41,15 +41,15 @@ public class goAction implements Action {
      * if the actionType == "put", piece can't be null
      */
     private void checkRep() {
-        assert (actionType == "put" || actionType == "move" || actionType == "capture");
+        assert (actionType.equals("put") || actionType.equals("move") || actionType.equals("capture"));
         assert (positions.length == 1 || positions.length == 2);
         assert (player != null);
-        assert (actionType != "put" || (actionType == "put" && piece != null));
+        assert (!actionType.equals("put") || (actionType.equals("put") && piece != null));
     }
 
     @Override
     public void put() {
-        Position target = positions[0];
+        Position target = this.positions[0];
         // put requirement:
         // 1. the piece of the target can't be null
         // 2. the putting piece can't be null
@@ -65,7 +65,7 @@ public class goAction implements Action {
 
     @Override
     public void move() {
-        Position target = positions[0];
+        Position target = this.positions[0];
         // move requirement:
         // the piece of the target can't be null
         if (target.piece() == null) {
@@ -80,7 +80,7 @@ public class goAction implements Action {
 
     @Override
     public void capture() {
-        Position target = positions[0];
+        Position target = this.positions[0];
         // capturing requirement:
         // 1. the target can't have no piece
         // 2. the owner of the piece can't be the same as the executor

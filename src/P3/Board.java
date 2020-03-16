@@ -43,6 +43,8 @@ public class Board {
      * @return Position of the (x, y)
      */
     public Position positionXY(int x, int y) {
+        if (x < 0 || x >= this.N || y < 0 || y >= this.N)
+            return null;
         return board[x][y];
     }
 

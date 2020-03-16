@@ -14,7 +14,7 @@ public interface Action {
      */
     public static Action newAction(String gameType, Player player, String actionType, Piece piece,
             Position... positions) {
-        return gameType == "chess" ? (new chessAction(player, actionType, piece, positions))
+        return gameType.equals("chess") ? (new chessAction(player, actionType, piece, positions))
                 : (new goAction(player, actionType, piece, positions));
     }
 

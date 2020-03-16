@@ -41,10 +41,10 @@ public class chessAction implements Action {
      * if the actionType == "put", piece can't be null
      */
     private void checkRep() {
-        assert (actionType == "put" || actionType == "move" || actionType == "capture");
+        assert (actionType.equals("put") || actionType.equals("move") || actionType.equals("capture"));
         assert (positions.length == 1 || positions.length == 2);
         assert (player != null);
-        assert (actionType != "put" || (actionType == "put" && piece != null));
+        assert (!actionType.equals("put") || (actionType.equals("put") && piece != null));
     }
 
     @Override
@@ -87,7 +87,7 @@ public class chessAction implements Action {
             target.piece().modifyPositionAs(null); // the piece captured removed
             source.piece().modifyPositionAs(target); // source piece move to the target
             target.modifyPieceAs(source.piece());// move the piece, this must be done before source's piece be null
-            source.modifyPieceAs(null);
+            source.modifyPieceAs(null);// set the source null
             actionSuccess = true;
             return;
         }

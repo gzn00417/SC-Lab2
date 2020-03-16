@@ -11,7 +11,7 @@ public interface Game {
      * @return a new chessGame or goGame
      */
     public static Game newGame(String gameType) {
-        return gameType == "chess" ? (new chessGame()) : (new goGame());
+        return gameType.equals("chess") ? (new chessGame()) : (new goGame());
     }
 
     /**
@@ -115,4 +115,15 @@ public interface Game {
      * @return the type of the game
      */
     public String gameType();
+
+    /**
+     * @return the board of the game
+     */
+    public Board board();
+
+    /**
+     * @param playerName
+     * @return the player who owns the name
+     */
+    public Player choosePlayerByName(String playerName);
 }

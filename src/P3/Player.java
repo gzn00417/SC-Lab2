@@ -83,7 +83,10 @@ public class Player {
         if (!actionTypes.contains(actionType))
             return null;
         Action action = Action.newAction(this.game.gameType(), this, actionType, piece, positions);
-        actions.add(action);
+        if (action.askSuccess())
+            actions.add(action);
+        else
+            action = null;
         return action;
     }
 
@@ -107,6 +110,18 @@ public class Player {
     public Piece freePiece() {
         for (Piece piece : this.pieces) {
             if (piece.position() == null)
+                return piece;
+        }
+        return null;
+    }
+
+    /**
+     * @param pieceName
+     * @return piece object of the piece name
+     */
+    public Piece findPieceByName(String pieceName) {
+        for (Piece piece : this.pieces) {
+            if (piece.name().equals(pieceName))
                 return piece;
         }
         return null;
