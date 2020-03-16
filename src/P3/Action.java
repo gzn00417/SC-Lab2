@@ -22,19 +22,19 @@ public interface Action {
      * @param piece
      * @return true if the putting is legal
      */
-    public void put();
+    public boolean put();
 
     /**
      * move one piece to a chose position
      * @return true if the move is legal
      */
-    public void move();
+    public boolean move();
 
     /**
      * capture a piece by another piece(chess) or a group of pieces(go)
      * @return true if the capture is legal
      */
-    public void capture();
+    public boolean capture();
 
     /**
      * ask the action's type

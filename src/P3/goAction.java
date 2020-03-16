@@ -2,10 +2,10 @@ package P3;
 
 public class goAction implements Action {
     private final String actionType;
-    private final Position[] positions;
-    private final Player player;
-    private final Piece piece;
-    private boolean actionSuccess;
+    public Position[] positions;
+    public Player player;
+    public Piece piece;
+    private final boolean actionSuccess;
 
     /**
      * create and finish the action
@@ -21,14 +21,16 @@ public class goAction implements Action {
         this.actionType = actionType;
         switch (actionType) {
             case "put":
-                put();
+                this.actionSuccess = put();
                 break;
             case "move":
-                move();
+                this.actionSuccess = move();
                 break;
             case "capture":
-                capture();
+                this.actionSuccess = capture();
                 break;
+            default:
+                this.actionSuccess = false;
         }
         checkRep();
     }
@@ -48,7 +50,7 @@ public class goAction implements Action {
     }
 
     @Override
-    public void put() {
+    public boolean put() {
         Position target = this.positions[0];
         // put requirement:
         // 1. the piece of the target can't be null
@@ -56,15 +58,13 @@ public class goAction implements Action {
         if (this.piece.position() == null && target.piece() != null) {
             this.piece.modifyPositionAs(target);
             target.modifyPieceAs(this.piece);
-            actionSuccess = true;
-            return;
+            return true;
         }
-        actionSuccess = false;
-        return;
+        return false;
     }
 
     @Override
-    public void move() {
+    public boolean move() {
         Position target = this.positions[0];
         // move requirement:
         // the piece of the target can't be null
@@ -72,14 +72,13 @@ public class goAction implements Action {
             Piece newPiece = player.freePiece();
             newPiece.modifyPositionAs(target);
             target.modifyPieceAs(newPiece);
-            actionSuccess = true;
-            return;
+            return true;
         }
-        actionSuccess = false;
+        return false;
     }
 
     @Override
-    public void capture() {
+    public boolean capture() {
         Position target = this.positions[0];
         // capturing requirement:
         // 1. the target can't have no piece
@@ -89,10 +88,9 @@ public class goAction implements Action {
             // because if not, piece will miss
             target.piece().modifyPositionAs(null);
             target.modifyPieceAs(null);
-            actionSuccess = true;
-            return;
+            return true;
         }
-        actionSuccess = false;
+        return false;
     }
 
     @Override
