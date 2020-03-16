@@ -189,7 +189,7 @@ public class ChessTest {
     }
 
     @Test
-    public void testCapture() {
+    public void testCaptureAndPut() {
 	// init
 	final Game game = Game.newGame("chess");
 	final Player player1 = new Player(game, "p1", true);
