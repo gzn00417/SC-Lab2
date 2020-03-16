@@ -76,4 +76,22 @@ public class Board {
             return null;
         return pieceXY(x, y).player();
     }
+
+    public void printBoard() {
+        for (int i = 0; i < this.N; i++) {
+            for (int j = 0; j < this.N; j++) {
+                if (this.pieceXY(i, j) != null) {
+                    if (game.gameType().equals("chess")) {
+                        System.out.print((this.pieceXY(i, j).isFirst() ? this.pieceXY(i, j).name().charAt(1)
+                                : this.pieceXY(i, j).name().toLowerCase().charAt(1)) + " ");
+                    } else if (game.gameType().equals("go")) {
+                        System.out.print(this.pieceXY(i, j).name().charAt(0) + " ");
+                    }
+                } else {
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
+        }
+    }
 }

@@ -57,6 +57,11 @@ public class ChessTest {
 	game.setPlayers(player1, player2);
 	player1.pieces = game.pieces(true);
 	player2.pieces = game.pieces(false);
+	
+	// Board.printBoard()
+	assertTrue(game.move(player1, game.board().positionXY(0, 1), game.board().positionXY(0, 3)));
+	assertTrue(game.capture(player2, game.board().positionXY(0, 6), game.board().positionXY(0, 3)));
+	game.board().printBoard();
 
 	// Board.PositionXY(x, y)
 	assertNotNull(game.board().positionXY(0, 1));
@@ -72,6 +77,8 @@ public class ChessTest {
 	assertEquals(null, game.board().XYisFree(4, 5));
 	assertEquals(player1, game.board().XYisFree(1, 1));
 	assertEquals(player2, game.board().XYisFree(7, 6));
+	
+	
     }
 
     @Test
@@ -153,6 +160,10 @@ public class ChessTest {
 	// put
 	assertEquals(false, game.put(player1, player1.findPieceByName("WP0"), game.board().positionXY(0, 1)));
 	assertEquals(false, game.put(player2, player2.findPieceByName("BN1"), game.board().positionXY(5, 4)));
+	
+	// After capture
+	assertTrue(game.capture(player2, game.board().positionXY(0, 6), game.board().positionXY(0, 1)));
+	assertTrue(game.put(player1, player1.findPieceByName("WP0"), game.board().positionXY(0, 6)));
     }
 
     @Test

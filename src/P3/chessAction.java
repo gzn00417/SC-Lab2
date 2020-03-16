@@ -89,7 +89,7 @@ public class chessAction implements Action {
         // 2. the source can't be null
         // 3. the target must belong to the OPPOSITE
         // 4. the source must belong to this player
-        if (target.piece() != null && source.piece() != null && !target.piece().player().equals(player)
+        if (target.piece() != null && source.piece() != null && (!target.piece().player().equals(player))
                 && source.piece().player().equals(player)) {
             target.piece().modifyPositionAs(null); // the piece capturing removed
             source.piece().modifyPositionAs(target); // captured piece move to the target
