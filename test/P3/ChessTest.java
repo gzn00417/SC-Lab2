@@ -42,8 +42,9 @@ public class ChessTest {
 
 	// Piece.modifyAsPosition
 	for (Piece piece : player1.pieces()) {
-	    assertNotNull(piece.position);
-	    assertNotNull(piece.position.piece());
+	    assertNotNull(piece.position());
+	    assertNotNull(piece.position().piece());
+	    assertSame(piece, piece.position().piece());
 	}
     }
 
@@ -127,15 +128,15 @@ public class ChessTest {
 			    || player2.pieces().contains(game.board().pieceXY(i, j)));
 	    }
 	}
-	
+
 	// Player.actions()
-	
+
 	// Player.sumPiece()
-	
+
 	// Player.name()
-	
+
 	// Player.freePiece()
-	
+
 	// Player.findPieceByPiece()
     }
 
@@ -182,9 +183,33 @@ public class ChessTest {
 	assertEquals(player2, game.board().positionXY(0, 1).piece().player());
 	assertEquals("BP0", game.board().positionXY(0, 1).piece().name());
 	assertEquals(player1, game.board().positionXY(0, 3).piece().player());
-	
+
 	// sumPiece
 	assertEquals(16, player2.sumPiece());
+    }
+
+    @Test
+    public void testCapture() {
+	// init
+	final Game game = Game.newGame("chess");
+	final Player player1 = new Player(game, "p1", true);
+	final Player player2 = new Player(game, "p2", false);
+	game.setPlayers(player1, player2);
+	player1.pieces = game.pieces(true);
+	player2.pieces = game.pieces(false);
+	
+	// capture
+	assertEquals(true, game.capture(player1, game.board().positionXY(0, 1), game.board().positionXY(0, 6)));
+	assertEquals(false, game.capture(player1, game.board().positionXY(1, 1), game.board().positionXY(2, 1)));
+	assertEquals(false, game.capture(player1, game.board().positionXY(1, 1), game.board().positionXY(1, 3)));
+	assertEquals(true, game.capture(player1, game.board().positionXY(0, 6), game.board().positionXY(1, 6)));
+	assertEquals(false, game.capture(player1, game.board().positionXY(1, 1), game.board().positionXY(1, 6)));
+	assertEquals("WP0", game.board().pieceXY(1, 6).name());
+	assertSame(player1.findPieceByName("WP0"), game.board().pieceXY(1, 6));
+	assertEquals(14, player2.sumPiece());
+	
+	// put
+	assertTrue(game.put(player2, player2.freePiece(), game.board().positionXY(0, 4)));
     }
 
 }

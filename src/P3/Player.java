@@ -10,7 +10,7 @@ public class Player {
     private final boolean First;
     public Game game;
     public Set<Piece> pieces;
-    public List<Action> actions = new ArrayList<>();
+    private List<Action> actions = new ArrayList<>();
 
     /**
      * initialize a Player and set his pieces
