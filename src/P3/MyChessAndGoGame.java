@@ -86,7 +86,7 @@ public abstract class MyChessAndGoGame {
                     y1 = input.nextInt();
                     x2 = input.nextInt();
                     y2 = input.nextInt();
-                    game.move(player, null, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2));
+                    game.move(player, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2));
                     return false;
                 case 3: // capture
                     if (game.gameType().equals("chess")) {
@@ -94,7 +94,7 @@ public abstract class MyChessAndGoGame {
                         y1 = input.nextInt();
                         x2 = input.nextInt();
                         y2 = input.nextInt();
-                        game.move(player, null, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2));
+                        game.move(player, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2));
                     } else if (game.gameType().equals("go")) {
                         x1 = input.nextInt();
                         y1 = input.nextInt();
