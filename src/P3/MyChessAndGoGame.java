@@ -4,16 +4,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public abstract class MyChessAndGoGame {
-    public static Game game;
-    public static Player player1, player2;
     public static Scanner input = new Scanner(System.in);
-
-    public static void main(String[] args) {
-        init();
-        GAME();
-        printRecord();
-        input.close();
-    }
 
     /**
      * provide 2 choices on screen for users to choose chess or go.
@@ -24,7 +15,7 @@ public abstract class MyChessAndGoGame {
      * generate 2 new Player;
      * generate new Piece belonged to Player;
      */
-    private static void init() {
+    public static void main(String[] args) {
         // scan : 3 String
         System.out.println("Please choose a type of game (chess/go):");
         String gameType = input.nextLine();
@@ -33,10 +24,15 @@ public abstract class MyChessAndGoGame {
         System.out.println("Please write the player2's name (Later):");
         String playerName2 = input.nextLine();
         // new objects
-        game = Game.newGame(gameType);
-        player1 = new Player(game, playerName1, true, game.pieces(true));
-        player2 = new Player(game, playerName2, false, game.pieces(false));
+        final Game game = Game.newGame(gameType);
+        final Player player1 = new Player(game, playerName1, true);
+        final Player player2 = new Player(game, playerName2, false);
         game.setPlayers(player1, player2);
+        player1.pieces = game.pieces(true);
+        player2.pieces = game.pieces(false);
+        GAME(game);
+        printRecord();
+        input.close();
     }
 
     /**
@@ -49,17 +45,17 @@ public abstract class MyChessAndGoGame {
      * 6. skip : skip()
      * 7. print "end" : end()
      */
-    private static void GAME() {
+    public static void GAME(Game game) {
         boolean endFlag = false;
         System.out.println("Game Start!");
         while (!endFlag) {
             System.out.println("Please choose a player:");
             String playerName = input.next();
-            endFlag = playerActing(game.choosePlayerByName(playerName));
+            endFlag = playerActing(game, game.choosePlayerByName(playerName));
         }
     }
 
-    private static boolean playerActing(Player player) {
+    public static boolean playerActing(Game game, Player player) {
         // String[] actionType = new String[] { "put", "move", "capture" };
         System.out.println("Please choose an action type:");
         System.out.println("1. put");
@@ -79,14 +75,16 @@ public abstract class MyChessAndGoGame {
                     pieceName = input.next();
                     x1 = input.nextInt();
                     y1 = input.nextInt();
-                    game.put(player, player.findPieceByName(pieceName), game.board().positionXY(x1, y1));
+                    System.out.println(
+                            game.put(player, player.findPieceByName(pieceName), game.board().positionXY(x1, y1)));
                     return false;
                 case 2: // move
                     x1 = input.nextInt();
                     y1 = input.nextInt();
                     x2 = input.nextInt();
                     y2 = input.nextInt();
-                    game.move(player, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2));
+                    System.out.println(
+                            game.move(player, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2)));
                     return false;
                 case 3: // capture
                     if (game.gameType().equals("chess")) {
@@ -94,17 +92,19 @@ public abstract class MyChessAndGoGame {
                         y1 = input.nextInt();
                         x2 = input.nextInt();
                         y2 = input.nextInt();
-                        game.move(player, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2));
+                        System.out.println(
+                                game.move(player, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2)));
                     } else if (game.gameType().equals("go")) {
                         x1 = input.nextInt();
                         y1 = input.nextInt();
-                        game.move(player, null, game.board().positionXY(x1, y1));
+                        System.out.println(game.move(player, game.board().positionXY(x1, y1)));
                     }
                     return false;
                 case 4: // is free?
                     x1 = input.nextInt();
                     y1 = input.nextInt();
-                    System.out.println(game.isFree(x1, y1));
+                    Player here = game.isFree(x1, y1);
+                    System.out.println(here == null ? "Free" : here.name());
                     return false;
                 case 5: // sum of pieces
                     Map<Player, Integer> sumPiece = game.sumPiece();
@@ -113,6 +113,7 @@ public abstract class MyChessAndGoGame {
                     return false;
                 case 6: // skip
                     game.skip();
+                    System.out.println("skip");
                     return false;
                 case 7: // end
                     game.end();
@@ -126,7 +127,7 @@ public abstract class MyChessAndGoGame {
     /**
      * after the game is ended, to print both players' records of the game.
      */
-    private static void printRecord() {
+    public static void printRecord() {
 
     }
 }

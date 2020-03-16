@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class goGame implements Game {
     public final String gameType = "go";
-    public Player player1 = null, player2 = null;
+    public Player player1, player2;
     public Board board;
     private final int GO_BOARD_SIDE = 19, GO_POINTS = 361;
 
@@ -24,7 +24,7 @@ public class goGame implements Game {
      */
     private void checkRep() {
         assert (gameType.equals("chess"));
-        assert (player1 != null && player2 != null);
+        // assert (player1 != null && player2 != null);
         assert (board != null);
     }
 
@@ -70,10 +70,10 @@ public class goGame implements Game {
 
     @Override
     public Set<Piece> pieces(boolean firstFlag) {
-        Set<Piece> pieces = new HashSet<Piece>();
+        final Set<Piece> pieces = new HashSet<Piece>();
         for (int i = 0; i < GO_POINTS; i++) {
             String pieceName = (firstFlag ? "B" : "W") + String.valueOf(i); // B1 W2 B3 W4
-            Piece piece = new Piece(pieceName, firstFlag, (firstFlag ? player1 : player2));
+            final Piece piece = new Piece(pieceName, firstFlag, (firstFlag ? player1 : player2));
             piece.modifyPositionAs(null);
             pieces.add(piece);
         }
@@ -82,7 +82,7 @@ public class goGame implements Game {
 
     @Override
     public boolean setPlayers(Player p1, Player p2) {
-        if (player1 != null || player2 != null)
+        if (player1 == null || player2 == null)
             return false;
         this.player1 = p1;
         this.player2 = p2;

@@ -24,7 +24,7 @@ public class chessGame implements Game {
      */
     private void checkRep() {
         assert (gameType.equals("chess"));
-        assert (player1 != null && player2 != null);
+        // assert (player1 != null && player2 != null);
         assert (board != null);
     }
 
@@ -99,8 +99,9 @@ public class chessGame implements Game {
                 Piece piece = new Piece(pieceName, firstFlag, (firstFlag ? player1 : player2));
                 int[] X = piecesPosMap.get(entry.getKey())[0];
                 int[] Y = piecesPosMap.get(entry.getKey())[1];
-                int x = X[i], y = firstFlag ? Y[i] : CHESS_BOARD_SIDE - Y[i] - 1;
+                int x = X[i], y = (firstFlag ? Y[i] : CHESS_BOARD_SIDE - Y[i] - 1);
                 piece.modifyPositionAs(board.positionXY(x, y));
+                board.positionXY(x, y).modifyPieceAs(piece);
                 pieces.add(piece);
             }
         }
@@ -109,7 +110,7 @@ public class chessGame implements Game {
 
     @Override
     public boolean setPlayers(Player p1, Player p2) {
-        if (player1 != null || player2 != null)
+        if (p1 == null || p2 == null)
             return false;
         this.player1 = p1;
         this.player2 = p2;

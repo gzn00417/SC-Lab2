@@ -2,7 +2,7 @@ package P3;
 
 public class Position {
     private final int x, y;
-    public Piece piece = null;
+    private Piece piece;
 
     Position(int X, int Y) {
         this.x = X;
@@ -53,8 +53,6 @@ public class Position {
      * @return true if the Piece updated successfully, false if the new Piece is null
      */
     public boolean modifyPieceAs(Piece newPiece) {
-        if (newPiece == null)
-            return false;
         this.piece = newPiece;
         checkRep();
         return true;

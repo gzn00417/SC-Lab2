@@ -8,7 +8,7 @@ import java.util.Set;
 public class Player {
     private final String playerName;
     private final boolean First;
-    private final Game game;
+    public Game game;
     public Set<Piece> pieces;
     public List<Action> actions = new ArrayList<>();
 
@@ -19,11 +19,10 @@ public class Player {
      * @param firstFlag
      * @param pieces
      */
-    Player(Game game, String playerName, boolean firstFlag, Set<Piece> pieces) {
+    Player(Game game, String playerName, boolean firstFlag) {
         this.game = game;
         this.playerName = playerName;
         this.First = firstFlag;
-        this.pieces = pieces;
         checkRep();
     }
 
@@ -34,8 +33,8 @@ public class Player {
      * there is no the same piece in pieces
      */
     private void checkRep() {
-        assert (playerName != null);
-        assert (game != null);
+        assert (!this.playerName.isEmpty());
+        assert (this.game != null);
     }
 
     /**

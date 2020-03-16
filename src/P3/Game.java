@@ -97,7 +97,7 @@ public interface Game {
     /**
      * @param p1
      * @param p2
-     * @return set the first and second players
+     * @return true if successfully set the first and second players
      */
     public boolean setPlayers(Player p1, Player p2);
 
