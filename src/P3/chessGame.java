@@ -30,16 +30,19 @@ public class chessGame implements Game {
 
     @Override
     public boolean put(Player player, Piece piece, Position position) {
+	if (player==null || piece==null || position==null) return false;
         return player.doAction("put", piece, position) != null;
     }
 
     @Override
     public boolean move(Player player, Position... positions) {
+	if (player==null) return false;
         return player.doAction("move", null, positions) != null;
     }
 
     @Override
     public boolean capture(Player player, Position... positions) {
+	if (player==null) return false;
         return player.doAction("capture", null, positions) != null;
     }
 

@@ -206,12 +206,20 @@ public class ChessTest {
 	assertEquals(false, game.capture(player1, game.board().positionXY(1, 1), game.board().positionXY(1, 6)));
 	assertEquals("WP0", game.board().pieceXY(1, 6).name());
 	assertSame(player1.findPieceByName("WP0"), game.board().pieceXY(1, 6));
-	assertEquals(14, player2.sumPiece());
+	assertEquals(true, game.capture(player1, game.board().positionXY(2, 1), game.board().positionXY(2, 6)));
+	assertEquals(13, player2.sumPiece());
 	
 	// put
 	assertEquals("BP1", player2.findPieceByName("BP1").name());
 	assertNull(game.board().positionXY(0, 4).piece());
 	assertTrue(game.put(player2, player2.findPieceByName("BP0"), game.board().positionXY(0, 4)));
+	assertFalse(game.put(player2, player2.findPieceByName("BP1"), game.board().positionXY(0, 4)));
+	assertFalse(game.put(player1, player2.findPieceByName("BP1"), game.board().positionXY(0, 4)));
+	assertFalse(game.put(player2, player2.findPieceByName("BP0"), game.board().positionXY(0, 4)));
+	assertNull(player1.findPieceByName("BP1"));
+	assertFalse(game.put(player2, player1.findPieceByName("BP1"), game.board().positionXY(1, 4)));
+	assertNull(game.board().positionXY(8, -1));
+	assertFalse(game.put(player2, player2.findPieceByName("BP2"), game.board().positionXY(8, -1)));
     }
 
 }
