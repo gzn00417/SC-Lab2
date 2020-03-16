@@ -2,7 +2,7 @@ package P3;
 
 public class chessAction implements Action {
     private final String actionType;
-    public Position[] positions;
+    private Position[] positions;
     public Player player;
     public Piece piece;
     private final boolean actionSuccess;
@@ -56,7 +56,7 @@ public class chessAction implements Action {
         // 1. the piece of the target can't be null
         // 2. the putting piece can't be null
         // 3. the piece must belong to the player
-        if (this.piece.position() == null && target.piece() != null && player.pieces().contains(piece)) {
+        if (this.piece.position() == null && target.piece() == null && player.pieces().contains(piece)) {
             this.piece.modifyPositionAs(target);
             target.modifyPieceAs(this.piece);
             return true;

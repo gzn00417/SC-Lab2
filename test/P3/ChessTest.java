@@ -209,7 +209,9 @@ public class ChessTest {
 	assertEquals(14, player2.sumPiece());
 	
 	// put
-	assertTrue(game.put(player2, player2.freePiece(), game.board().positionXY(0, 4)));
+	assertEquals("BP1", player2.findPieceByName("BP1").name());
+	assertNull(game.board().positionXY(0, 4).piece());
+	assertTrue(game.put(player2, player2.findPieceByName("BP0"), game.board().positionXY(0, 4)));
     }
 
 }
