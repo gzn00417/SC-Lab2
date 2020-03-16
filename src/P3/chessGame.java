@@ -30,19 +30,22 @@ public class chessGame implements Game {
 
     @Override
     public boolean put(Player player, Piece piece, Position position) {
-	if (player==null || piece==null || position==null) return false;
+        if (player == null || piece == null || position == null)
+            return false;
         return player.doAction("put", piece, position) != null;
     }
 
     @Override
     public boolean move(Player player, Position... positions) {
-	if (player==null) return false;
+        if (player == null)
+            return false;
         return player.doAction("move", null, positions) != null;
     }
 
     @Override
     public boolean capture(Player player, Position... positions) {
-	if (player==null) return false;
+        if (player == null)
+            return false;
         return player.doAction("capture", null, positions) != null;
     }
 
@@ -71,7 +74,7 @@ public class chessGame implements Game {
         return;
     }
 
-    private final Map<String, Integer> piecesSumMap = new HashMap<>() {
+    private static final Map<String, Integer> piecesSumMap = new HashMap<>() {
         {
             put("P", 8);
             put("R", 2);
@@ -82,7 +85,7 @@ public class chessGame implements Game {
         }
     };
 
-    private final Map<String, int[][]> piecesPosMap = new HashMap<>() {
+    private static final Map<String, int[][]> piecesPosMap = new HashMap<>() {
         {
             put("P", new int[][] { { 0, 1, 2, 3, 4, 5, 6, 7 }, { 1, 1, 1, 1, 1, 1, 1, 1 } });
             put("R", new int[][] { { 0, 7 }, { 0, 0 } });
