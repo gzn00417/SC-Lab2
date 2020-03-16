@@ -54,13 +54,12 @@ public abstract class MyChessAndGoGame {
         System.out.println("Game Start!");
         while (!endFlag) {
             System.out.println("Please choose a player:");
-            String playerName = input.nextLine();
+            String playerName = input.next();
             endFlag = playerActing(game.choosePlayerByName(playerName));
         }
     }
 
     private static boolean playerActing(Player player) {
-        int choice = 0;
         // String[] actionType = new String[] { "put", "move", "capture" };
         System.out.println("Please choose an action type:");
         System.out.println("1. put");
@@ -73,7 +72,8 @@ public abstract class MyChessAndGoGame {
         String pieceName;
         int x1, y1; // source
         int x2, y2; // target
-        while ((choice = input.nextInt()) != 0) {
+        int choice = input.nextInt();
+        while (choice != 0) {
             switch (choice) {
                 case 1: // put
                     pieceName = input.next();

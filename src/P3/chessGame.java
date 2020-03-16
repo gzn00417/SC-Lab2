@@ -101,6 +101,7 @@ public class chessGame implements Game {
                 int[] Y = piecesPosMap.get(entry.getKey())[1];
                 int x = X[i], y = firstFlag ? Y[i] : CHESS_BOARD_SIDE - Y[i] - 1;
                 piece.modifyPositionAs(board.positionXY(x, y));
+                pieces.add(piece);
             }
         }
         return pieces;
