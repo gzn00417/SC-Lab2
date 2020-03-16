@@ -2,8 +2,8 @@ package P3;
 
 public class Board {
     private final int N;
-    private final Game game;
-    private Position[][] board;
+    public Game game;
+    public Position[][] board;
 
     /**
      * Initialize a new Board and N*N Position

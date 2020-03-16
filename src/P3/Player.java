@@ -94,7 +94,13 @@ public class Player {
      * @return the number of pieces
      */
     public int sumPiece() {
-        return pieces.size();
+        int sum = 0;
+        for (Piece piece : pieces) {
+            if (piece.position() != null) {
+                sum++;
+            }
+        }
+        return sum;
     }
 
     /**
