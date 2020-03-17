@@ -88,7 +88,7 @@ public class Board {
                         System.out.print(this.pieceXY(i, j).name().charAt(0) + " ");
                     }
                 } else {
-                    System.out.print("  ");
+                    System.out.print(". ");
                 }
             }
             System.out.println();
