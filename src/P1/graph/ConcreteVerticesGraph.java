@@ -155,7 +155,7 @@ public class ConcreteVerticesGraph<L> implements Graph<L> {
 		return targets;
 	}
 
-	// TODO toL()
+	// TODO toString()
 	public String toString() {
 		return "This graph has " + vertices.size() + " vertices";
 	}

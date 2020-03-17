@@ -16,30 +16,31 @@ import org.junit.Test;
  * Tests against the Graph spec should be in GraphInstanceTest.
  */
 public class ConcreteVerticesGraphTest extends GraphInstanceTest {
-    
+
     /*
      * Provide a ConcreteVerticesGraph for tests in GraphInstanceTest.
      */
-    @Override public Graph<String> emptyInstance() {
+    @Override
+    public Graph<String> emptyInstance() {
         return new ConcreteVerticesGraph();
     }
-    
+
     /*
      * Testing ConcreteVerticesGraph...
      */
-    
+
     // Testing strategy for ConcreteVerticesGraph.toString()
     //   TODO
-    
+
     // TODO tests for ConcreteVerticesGraph.toString()
-    
+
     /*
      * Testing Vertex...
      */
-    
+
     // Testing strategy for Vertex
     //   TODO
-    
+
     // TODO tests for operations of Vertex
-    
+
 }
