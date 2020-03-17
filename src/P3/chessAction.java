@@ -106,11 +106,6 @@ public class chessAction implements Action {
     }
 
     @Override
-    public Position position() {
-        return this.position();
-    }
-
-    @Override
     public Player player() {
         return this.player;
     }

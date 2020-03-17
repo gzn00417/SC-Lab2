@@ -43,11 +43,6 @@ public interface Action {
     public String actionType();
 
     /**
-     * @return the position which action appears
-     */
-    public Position position();
-
-    /**
      * @return who does the action
      */
     public Player player();

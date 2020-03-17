@@ -53,6 +53,7 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
     // vertex: two String type:the different ,the same,the null
     // weight:<0 >0 =0
 
+    @SuppressWarnings("unused")
     @Test
     public void testStructure() {
         // cover vertex :two same String
