@@ -45,7 +45,7 @@ public abstract class MyChessAndGoGame {
      * 6. skip : skip() 
      * 7. print "end" : end()
      */
-    public static void GAME(Game game) {
+    private static void GAME(Game game) {
 	boolean endFlag = false;
 	System.out.println("Game Start!");
 	while (!endFlag) {
@@ -56,7 +56,7 @@ public abstract class MyChessAndGoGame {
 	}
     }
 
-    public static boolean playerActing(Game game, Player player) {
+    private static boolean playerActing(Game game, Player player) {
 	// String[] actionType = new String[] { "put", "move", "capture" };
 	System.out.println("Please choose an action type:");
 	System.out.println("1. put");
@@ -127,7 +127,7 @@ public abstract class MyChessAndGoGame {
     /**
      * after the game is ended, to print both players' records of the game.
      */
-    public static void printRecord(Game game, Player player1, Player player2) {
+    private static void printRecord(Game game, Player player1, Player player2) {
 	List<Action> actions1 = player1.actions();
 	List<Action> actions2 = player2.actions();
 	System.out.println("\n" + player1.name() + "'s Actions:");
