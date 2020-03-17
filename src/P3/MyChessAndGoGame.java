@@ -8,11 +8,13 @@ public abstract class MyChessAndGoGame {
     public static Scanner input = new Scanner(System.in);
 
     /**
-     * provide 2 choices on screen for users to choose chess or go. generate new
-     * Game; generate new Board;
+     * provide 2 choices on screen for users to choose chess or go.
+     * generate new Game; 
+     * generate new Board;
      * 
-     * get 2 players' names printed on the screen. generate 2 new Player; generate
-     * new Piece belonged to Player;
+     * get 2 players' names printed on the screen.
+     * generate 2 new Player;
+     * generate new Piece belonged to Player;
      */
     public static void main(String[] args) {
 	// scan : 3 String
