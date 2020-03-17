@@ -19,7 +19,7 @@ import java.util.Set;
 public class ConcreteEdgesGraph<L> implements Graph<L> {
 
     private final Set<L> vertices = new HashSet<>();
-    private final List<Edge> edges = new ArrayList<>();
+    private final List<Edge<L>> edges = new ArrayList<>();
 
     // Abstraction function:
     // TODO
@@ -74,7 +74,7 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
                 int lastEdgeWeight = edge.weight();
                 edges.remove(edge);
                 if (weight > 0) {
-                    Edge<L> newEdge = new Edge(source, target, weight);
+                    Edge<L> newEdge = new Edge<L>(source, target, weight);
                     edges.add(newEdge);
                 }
                 checkRep();
@@ -85,7 +85,7 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
         if (weight == 0)
             return 0;
         // new positive edge
-        Edge<L> newEdge = new Edge(source, target, weight);
+        Edge<L> newEdge = new Edge<L>(source, target, weight);
         edges.add(newEdge);
         checkRep();
         return 0;
@@ -182,7 +182,7 @@ class Edge<L> {
 
     // TODO checkRep
     private void checkRep() {
-        assert (weight > 0 || source == target);
+        assert (weight > 0 && !source.equals(target));
     }
 
     // TODO methods
@@ -199,7 +199,7 @@ class Edge<L> {
     }
 
     public boolean sameEdge(L source, L target) {
-        return source == this.source && target == this.target;
+        return source.equals(this.source) && target.equals(this.target);
     }
 
     // TODO toL()

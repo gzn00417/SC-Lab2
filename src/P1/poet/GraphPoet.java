@@ -111,6 +111,7 @@ public class GraphPoet {
 				}
 			}
 		}
+		reader.close();
 		checkRep();
 	}
 

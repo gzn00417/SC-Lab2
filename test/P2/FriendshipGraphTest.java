@@ -3,7 +3,7 @@ package P2;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public abstract class FriendshipGraphTest {
+public class FriendshipGraphTest {
 
 	/**
 	 * Basic Network Test

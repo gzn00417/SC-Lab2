@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class FriendshipGraph {
-	Graph<Person> graph = Graph.empty();
+	final Graph<Person> graph = Graph.empty();
 
 	/**
 	 * @param newPerson adding person
@@ -40,12 +40,11 @@ public class FriendshipGraph {
 	 * @return distance between 2 persons or -1 when unlinked
 	 */
 
-	Map<Person, Integer> dis = new HashMap<>();
-	Map<Person, Boolean> vis = new HashMap<>();
-
 	public int getDistance(Person sta, Person end) {
-		if (sta == end)
+		if (sta.equals(end))
 			return 0;
+		Map<Person, Integer> dis = new HashMap<>();
+		Map<Person, Boolean> vis = new HashMap<>();
 		Queue<Person> qu = new LinkedList<Person>();
 		Set<Person> persons = graph.vertices();
 		for (Person person : persons) {
@@ -64,7 +63,7 @@ public class FriendshipGraph {
 					vis.put(target, true);
 					dis.remove(target);
 					dis.put(target, dis.get(person) + 1);
-					if (target == end)
+					if (target.equals(end))
 						return dis.get(target);
 				}
 			}
