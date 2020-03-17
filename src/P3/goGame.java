@@ -57,6 +57,7 @@ public class goGame implements Game {
     @Override
     public Map<Player, Integer> sumPiece() {
         return new HashMap<Player, Integer>() {
+            private static final long serialVersionUID = 1L;
             {
                 put(player1, player1.sumPiece());
                 put(player2, player2.sumPiece());

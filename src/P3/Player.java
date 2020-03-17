@@ -66,6 +66,7 @@ public class Player {
     }
 
     private final Set<String> actionTypes = new HashSet<>() {
+        private static final long serialVersionUID = 1L;
         {
             add("put");
             add("move");

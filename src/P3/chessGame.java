@@ -57,6 +57,7 @@ public class chessGame implements Game {
     @Override
     public Map<Player, Integer> sumPiece() {
         return new HashMap<Player, Integer>() {
+            private static final long serialVersionUID = 1L;
             {
                 put(player1, player1.sumPiece());
                 put(player2, player2.sumPiece());
@@ -75,6 +76,7 @@ public class chessGame implements Game {
     }
 
     private static final Map<String, Integer> piecesSumMap = new HashMap<>() {
+        private static final long serialVersionUID = 1L;
         {
             put("P", 8);
             put("R", 2);
@@ -86,6 +88,7 @@ public class chessGame implements Game {
     };
 
     private static final Map<String, int[][]> piecesPosMap = new HashMap<>() {
+        private static final long serialVersionUID = 1L;
         {
             put("P", new int[][] { { 0, 1, 2, 3, 4, 5, 6, 7 }, { 1, 1, 1, 1, 1, 1, 1, 1 } });
             put("R", new int[][] { { 0, 7 }, { 0, 0 } });
