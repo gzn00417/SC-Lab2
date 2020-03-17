@@ -93,11 +93,11 @@ public abstract class MyChessAndGoGame {
 		    x2 = input.nextInt();
 		    y2 = input.nextInt();
 		    System.out.println(
-			    game.move(player, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2)));
+			    game.capture(player, game.board().positionXY(x1, y1), game.board().positionXY(x2, y2)));
 		} else if (game.gameType().equals("go")) {
 		    x1 = input.nextInt();
 		    y1 = input.nextInt();
-		    System.out.println(game.move(player, game.board().positionXY(x1, y1)));
+		    System.out.println(game.capture(player, game.board().positionXY(x1, y1)));
 		}
 		return false;
 	    case 4: // is free?
