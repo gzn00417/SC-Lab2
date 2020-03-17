@@ -39,7 +39,7 @@ public class goGame implements Game {
     public boolean move(Player player, Position... positions) {
         if (player == null)
             return false;
-        return player.doAction("move", null, positions) != null;
+        return player.doAction("move", player.freePiece(), positions) != null;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class goGame implements Game {
 
     @Override
     public boolean setPlayers(Player p1, Player p2) {
-        if (player1 == null || player2 == null)
+        if (p1 == null || p2 == null)
             return false;
         this.player1 = p1;
         this.player2 = p2;

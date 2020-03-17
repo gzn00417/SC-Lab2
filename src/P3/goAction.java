@@ -69,9 +69,9 @@ public class goAction implements Action {
     public boolean move() {
         Position target = this.positions[0];
         // move requirement:
-        // 1. the piece of the target can't be null
-        // 2. the target must belong to the OPPOSITE
-        if (target.piece() == null && !target.piece().player().equals(player)) {
+        // 1. the chosen piece can't be null
+        // 2. the target must be null
+        if (target.piece() == null) {
             Piece newPiece = player.freePiece();
             newPiece.modifyPositionAs(target);
             target.modifyPieceAs(newPiece);
