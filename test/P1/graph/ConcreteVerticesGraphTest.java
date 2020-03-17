@@ -5,6 +5,8 @@ package P1.graph;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+
 import org.junit.Test;
 
 /**
@@ -22,7 +24,7 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
      */
     @Override
     public Graph<String> emptyInstance() {
-        return new ConcreteVerticesGraph();
+        return new ConcreteVerticesGraph<String>();
     }
 
     /*
@@ -30,17 +32,49 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
      */
 
     // Testing strategy for ConcreteVerticesGraph.toString()
-    //   TODO
+    // test whether the returned String is matched with what we wanted
 
-    // TODO tests for ConcreteVerticesGraph.toString()
+    @Test
+    public void testToString() {
+        Graph<String> graph = emptyInstance();
+        assertTrue(graph.add("a"));
+        assertTrue(graph.add("b"));
+        assertTrue(graph.add("c"));
+        assertEquals(0, graph.set("a", "b", 1));
+        assertEquals("This graph has 3 vertices", graph.toString());
+    }
 
     /*
      * Testing Vertex...
      */
 
     // Testing strategy for Vertex
-    //   TODO
+    // vertex: two String type:the different ,the same,the null
+    // weight:<0 >0 =0
 
-    // TODO tests for operations of Vertex
+    @Test
+    public void testVertices() {
+        Vertex<String> vertex1 = new Vertex<>("first");
+        Vertex<String> vertex2 = new Vertex<>("second");
+        try {
+            vertex1.setInEdge("second", -1);
+            fail("not catch weight<=0 error");
+        } catch (AssertionError error) {
+        }
+        try {
+            vertex1.setInEdge("first", 0);
+            fail("not catch weight<=0 error");
+        } catch (AssertionError error) {
+        }
+        vertex1.setInEdge("second", 1);
+        vertex2.setOutEdge("first", 2);
+        HashMap<String, Integer> result1 = new HashMap<>(), result2 = new HashMap<>();
+        result1.put("second", 1);
+        result2.put("first", 2);
+        assertEquals(result1, vertex1.sources());
+        assertEquals(new HashMap<>(), vertex1.targets());
+        assertEquals(new HashMap<>(), vertex2.sources());
+        assertEquals(result2, vertex2.targets());
+    }
 
 }
