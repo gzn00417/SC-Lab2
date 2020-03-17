@@ -115,7 +115,7 @@ public class GraphPoet {
 		checkRep();
 	}
 
-	// TODO checkRep
+	// checkRep
 	private void checkRep() {
 		Set<String> vertices = graph.vertices();
 		for (String vertex : vertices)
@@ -160,6 +160,10 @@ public class GraphPoet {
 		return answer;
 	}
 
-	// TODO toString()
+	// toString()
+	@Override
+	public String toString() {
+		return "This is an instance of GraphPoet, hashcode: " + this.hashCode();
+	}
 
 }

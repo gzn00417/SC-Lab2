@@ -21,27 +21,23 @@ public class ConcreteVerticesGraph<L> implements Graph<L> {
 	private final List<Vertex<L>> vertices = new ArrayList<>();
 
 	// Abstraction function:
-	// TODO
 	// the List vertices represents the nodes in the graph
 	// the class Vertex contains edges to or from ThisVertex
 
 	// Representation invariant:
-	// TODO
 	// the weight must be non-negative
 	// the total number of TO edges must be the same with the FROM edges
 	// ThisVertex of the vertex can't be null
 
 	// Safety from rep exposure:
-	// TODO
 	// the vertex class can't be gotten by outside
 	// make the vertices be private and final and immutable
 
-	// TODO constructor
 	ConcreteVerticesGraph() {
 
 	}
 
-	// TODO checkRep
+	// checkRep
 	private void checkRep() {
 		for (Vertex<L> vertex : vertices) {
 			assert (vertex.ThisVertex() != null);
@@ -155,48 +151,44 @@ public class ConcreteVerticesGraph<L> implements Graph<L> {
 		return targets;
 	}
 
-	// TODO toString()
+	// toString()
 	public String toString() {
 		return "This graph has " + vertices.size() + " vertices";
 	}
 }
 
 /**
- * TODO specification Mutable. This class is internal to the rep of
- * ConcreteVerticesGraph.
+ * specification Mutable.
+ * This class is internal to the rep of ConcreteVerticesGraph.
  * 
  * <p>
- * PS2 instructions: the specification and implementation of this class is up to
- * you.
+ * PS2 instructions: the specification and implementation of this class is up to you.
  */
 class Vertex<L> {
 
-	// TODO fields
+	// fields
 	private L ThisVertex;
 	private Map<L, Integer> inEdges = new HashMap<>();
 	private Map<L, Integer> outEdges = new HashMap<>();
 
 	// Abstraction function:
-	// TODO
 	// ThisVertex represents itself;
 	// inEdges contains Edges that directs it;
 	// outEdges contains Edges that it directs others;
 
 	// Representation invariant:
-	// TODO
 	// ThisVertex MUST be not null;
 	// Weights of inEdges and outEdges MUST be positive;
 
 	// Safety from rep exposure:
-	// TODO
 	// Edges CAN'T be modified from the outside
 
-	// TODO constructor
+	// constructor
 	Vertex(L label) {
 		ThisVertex = label;
 	}
 
-	// TODO checkRep
+	// checkRep
 	private void checkRep() {
 		for (L key : inEdges.keySet())
 			assert (inEdges.get(key) > 0);
@@ -204,7 +196,7 @@ class Vertex<L> {
 			assert (outEdges.get(key) > 0);
 	}
 
-	// TODO methods
+	// methods
 	public L ThisVertex() {
 		return ThisVertex;
 	}
@@ -222,6 +214,8 @@ class Vertex<L> {
 	}
 
 	public int setInEdge(L source, int weight) {
+		if (weight <= 0)
+			return 0;
 		for (L key : inEdges.keySet()) {
 			if (key.equals(source)) {
 				int lastEdgeWeight = inEdges.get(key);
@@ -236,6 +230,8 @@ class Vertex<L> {
 	}
 
 	public int setOutEdge(L target, int weight) {
+		if (weight <= 0)
+			return 0;
 		for (L key : outEdges.keySet()) {
 			if (key.equals(target)) {
 				int lastEdgeWeight = outEdges.get(key);
@@ -269,7 +265,7 @@ class Vertex<L> {
 		return lastEdgeWeight;
 	}
 
-	// TODO toL()
+	// toString()
 	@Override
 	public String toString() {
 		return ThisVertex.toString();

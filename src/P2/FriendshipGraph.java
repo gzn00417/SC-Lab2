@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class FriendshipGraph {
-	final Graph<Person> graph = Graph.empty();
+	private final Graph<Person> graph = Graph.empty();
 
 	/**
 	 * @param newPerson adding person

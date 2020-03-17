@@ -22,29 +22,25 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
     private final List<Edge<L>> edges = new ArrayList<>();
 
     // Abstraction function:
-    // TODO
     /*
      * use a universe L to represent vertices; use edge class to represent edges
      */
 
     // Representation invariant:
-    // TODO
     /*
      * the vertex must be not null; the weight must be positive
      */
 
     // Safety from rep exposure:
-    // TODO
     // make the rep be private and final ,don't provide public function to modify
     // the value of these fields
     // never return mutable rep, only return the clone data
 
-    // TODO constructor
     ConcreteEdgesGraph() {
 
     }
 
-    // TODO checkRep
+    // checkRep
     private void checkRep() {
         for (L vertex : vertices)
             assert (vertex != null);
@@ -130,7 +126,7 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
         return targets;
     }
 
-    // TODO toL()
+    // TODO toString()
     @Override
     public String toString() {
         return "the number of vertices is  " + vertices.size() + " ,the number of edges is " + edges.size();
@@ -139,21 +135,19 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
 }
 
 /**
- * TODO specification Immutable. This class is internal to the rep of
- * ConcreteEdgesGraph.
+ * TODO specification Immutable.
+ * This class is internal to the rep of ConcreteEdgesGraph.
  * 
  * <p>
- * PS2 instructions: the specification and implementation of this class is up to
- * you.
+ * PS2 instructions: the specification and implementation of this class is up to you.
  */
 class Edge<L> {
 
-    // TODO fields
+    // fields
     private L source, target;
     private int weight;
 
     // Abstraction function:
-    // TODO
     /*
      * source: the start vertex of the edge
      * target: the end vertex of the edge
@@ -161,18 +155,15 @@ class Edge<L> {
      */
 
     // Representation invariant:
-    // TODO
     /*
      * the weight must be positive the source and target must be different
      */
 
     // Safety from rep exposure:
-    // TODO
     /*
-     * make source, target and weight unchangable
+     * make source, target and weight unchangeable
      */
 
-    // TODO constructor
     Edge(L source, L target, int weight) {
         this.source = source;
         this.target = target;
@@ -180,12 +171,12 @@ class Edge<L> {
         checkRep();
     }
 
-    // TODO checkRep
+    // checkRep
     private void checkRep() {
         assert (weight > 0 && !source.equals(target));
     }
 
-    // TODO methods
+    // methods
     public L source() {
         return this.source;
     }
@@ -202,7 +193,7 @@ class Edge<L> {
         return source.equals(this.source) && target.equals(this.target);
     }
 
-    // TODO toL()
+    // toString()
     @Override
     public String toString() {
         return "Source: " + this.source + "; Target: " + this.target + "; Weight: " + this.weight;

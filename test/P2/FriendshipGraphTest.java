@@ -1,6 +1,7 @@
 package P2;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 public class FriendshipGraphTest {
@@ -9,7 +10,7 @@ public class FriendshipGraphTest {
 	 * Basic Network Test
 	 */
 	@Test
-	public void GraphTest1() {
+	public void Test1() {
 		final FriendshipGraph graph = new FriendshipGraph();
 
 		final Person rachel = new Person("Rachel");
@@ -23,9 +24,9 @@ public class FriendshipGraphTest {
 		assertEquals(true, graph.addVertex(kramer));
 
 		assertEquals(0, graph.addEdge(rachel, ross));
-		assertEquals(0, graph.addEdge(ross, rachel));
+		assertEquals(1, graph.addEdge(ross, rachel));
 		assertEquals(0, graph.addEdge(ross, ben));
-		assertEquals(0, graph.addEdge(ben, ross));
+		assertEquals(1, graph.addEdge(ben, ross));
 
 		assertEquals(1, graph.getDistance(rachel, ross));
 		assertEquals(2, graph.getDistance(rachel, ben));
@@ -37,7 +38,7 @@ public class FriendshipGraphTest {
 	 * Further Test
 	 */
 	@Test
-	public void GraphTest2() {
+	public void Test2() {
 		final FriendshipGraph graph = new FriendshipGraph();
 
 		final Person a = new Person("A");
