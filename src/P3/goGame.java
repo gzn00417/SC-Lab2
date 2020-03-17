@@ -23,7 +23,7 @@ public class goGame implements Game {
      * board can't be null
      */
     private void checkRep() {
-        assert (gameType.equals("chess"));
+        assert (gameType.equals("go"));
         // assert (player1 != null && player2 != null);
         assert (board != null);
     }
