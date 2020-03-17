@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public abstract class MyChessAndGoGame {
+public class MyChessAndGoGame {
 	public static Scanner input = new Scanner(System.in);
 
 	/**
