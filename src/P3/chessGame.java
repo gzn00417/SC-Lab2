@@ -75,7 +75,7 @@ public class chessGame implements Game {
         return;
     }
 
-    private static final Map<String, Integer> piecesSumMap = new HashMap<>() {
+    private static final Map<String, Integer> piecesSumMap = new HashMap<String, Integer>() {
         private static final long serialVersionUID = 1L;
         {
             put("P", 8);
@@ -87,7 +87,7 @@ public class chessGame implements Game {
         }
     };
 
-    private static final Map<String, int[][]> piecesPosMap = new HashMap<>() {
+    private static final Map<String, int[][]> piecesPosMap = new HashMap<String, int[][]>() {
         private static final long serialVersionUID = 1L;
         {
             put("P", new int[][] { { 0, 1, 2, 3, 4, 5, 6, 7 }, { 1, 1, 1, 1, 1, 1, 1, 1 } });

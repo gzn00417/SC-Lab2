@@ -65,7 +65,7 @@ public class Player {
         return this.actions;
     }
 
-    private final Set<String> actionTypes = new HashSet<>() {
+    private final Set<String> actionTypes = new HashSet<String>() {
         private static final long serialVersionUID = 1L;
         {
             add("put");
