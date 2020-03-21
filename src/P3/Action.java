@@ -5,11 +5,11 @@ public interface Action {
     /**
      * generate a new Action of one piece
      * do the action
-     * @param gameType
-     * @param player
-     * @param actionType
-     * @param piece
-     * @param positions
+     * @param gameType String of the type of the game
+     * @param player the acting player
+     * @param actionType String of the type of the action
+     * @param piece the operating piece
+     * @param positions the positions related to the action
      * @return an object of a type of Action(chessAction or goAction)
      */
     public static Action newAction(String gameType, Player player, String actionType, Piece piece,
@@ -19,7 +19,7 @@ public interface Action {
     }
 
     /**
-     * @param piece
+     * @param piece the putting piece
      * @return true if the putting is legal
      */
     public boolean put();
