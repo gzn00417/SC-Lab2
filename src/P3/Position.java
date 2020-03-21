@@ -1,7 +1,7 @@
 package P3;
 
 public class Position {
-    private final int x, y;
+    private final int x, y; // the coordinate of the position
     private Piece piece;
 
     Position(int X, int Y) {
