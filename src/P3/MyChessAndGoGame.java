@@ -62,7 +62,7 @@ public class MyChessAndGoGame {
 	}
 
 	private static boolean playerActing(Game game, Player player) {
-		// String[] actionType = new String[] { "put", "move", "capture" };
+		// menu
 		System.out.println("Please choose an action type:");
 		System.out.println("1. put");
 		System.out.println(game.gameType().equals("chess") ? "2. move" : "");
@@ -71,12 +71,14 @@ public class MyChessAndGoGame {
 		System.out.println("5. ask: sum of both players' pieces");
 		System.out.println("6. skip the choose");
 		System.out.println("7. end the game");
+		// input information
 		String pieceName = "";
 		int x1, y1; // source
 		int x2, y2; // target
+		// catch choice
 		System.out.print("Your Choice is:");
 		int choice = input.nextInt();
-		while (choice != 0) {
+		while (choice > 0 && choice <= 7) { // prepare the probable wrong choice
 			switch (choice) {
 				case 1: // put
 					if (game.gameType().equals("chess")) {
@@ -85,8 +87,11 @@ public class MyChessAndGoGame {
 					System.out.print("The (x, y) of the target: ");
 					x1 = input.nextInt();
 					y1 = input.nextInt();
+					// choose a piece freely if go
+					// get the particular piece if chess
 					Piece puttingPiece = game.gameType().equals("chess") ? player.findPieceByName(pieceName)
 							: player.freePiece();
+					// print result
 					System.out.println(game.put(player, puttingPiece, game.board().positionXY(x1, y1)));
 					return false;
 				case 2: // move
@@ -122,7 +127,7 @@ public class MyChessAndGoGame {
 					System.out.println(here == null ? "Free" : here.name());
 					return false;
 				case 5: // sum of pieces
-					Map<Player, Integer> sumPiece = game.sumPiece();
+					Map<Player, Integer> sumPiece = game.sumPiece(); // two players' sum of pieces
 					System.out.println(game.player1().name() + ":" + sumPiece.get(game.player1()) + " pieces");
 					System.out.println(game.player2().name() + ":" + sumPiece.get(game.player2()) + " pieces");
 					return false;
@@ -145,6 +150,7 @@ public class MyChessAndGoGame {
 	 */
 	private static void printRecord(Game game, Player player1, Player player2) {
 		System.out.println("\nAll of the Actions Record are followed.");
+		// get the record of the actions
 		List<Action> actions1 = player1.actions();
 		List<Action> actions2 = player2.actions();
 		System.out.println("\n" + player1.name() + "'s Actions:");
