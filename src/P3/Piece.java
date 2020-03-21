@@ -7,9 +7,9 @@ public class Piece {
     private Player player;
 
     /**
-     * @param pieceName
-     * @param firstFlag
-     * @param player
+     * @param pieceName String of the name of the piece
+     * @param firstFlag true if the owner of the piece is first hand, false if not
+     * @param player the owner of the piece
      */
     Piece(String pieceName, boolean firstFlag, Player player) {
         this.name = pieceName;
