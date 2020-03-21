@@ -5,14 +5,14 @@ public class goAction implements Action {
     public Position[] positions;
     public Player player;
     public Piece piece;
-    private final boolean actionSuccess;
+    private final boolean actionSuccess; // true if the action if it succeeds
 
     /**
      * create and finish the action
-     * @param player
-     * @param actionType
-     * @param piece
-     * @param positions
+     * @param player the operating player
+     * @param actionType String of the type of the action
+     * @param piece the operating piece
+     * @param positions the position related to the action
      */
     goAction(Player player, String actionType, Piece piece, Position... positions) {
         this.player = player;
