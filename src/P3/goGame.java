@@ -12,6 +12,7 @@ public class goGame implements Game {
     private static final int GO_BOARD_SIDE = 19, GO_POINTS = 361;
 
     goGame() {
+        // new a board linking with the game
         board = new Board(this, GO_BOARD_SIDE);
         checkRep();
     }
@@ -80,7 +81,8 @@ public class goGame implements Game {
         final Set<Piece> pieces = new HashSet<Piece>();
         for (int i = 0; i < GO_POINTS; i++) {
             String pieceName = (firstFlag ? "B" : "W") + String.valueOf(i); // B1 W2 B3 W4
-            final Piece piece = new Piece(pieceName, firstFlag, (firstFlag ? player1 : player2));
+            final Piece piece = new Piece(pieceName, firstFlag, (firstFlag ? player1 : player2)); // new a piece
+            // put the piece onto the position
             piece.modifyPositionAs(null);
             pieces.add(piece);
         }
