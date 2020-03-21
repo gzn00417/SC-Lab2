@@ -49,6 +49,7 @@ public class MyChessAndGoGame {
 	 * board : sumPiece(); 
 	 * 6. skip : skip() 
 	 * 7. print "end" : end()
+	 * @param game the object of the game
 	 */
 	private static void GAME(Game game) {
 		boolean endFlag = false;
@@ -61,6 +62,11 @@ public class MyChessAndGoGame {
 		}
 	}
 
+	/**
+	 * @param game the object of the game
+	 * @param player the object of the operating player
+	 * @return true if the player choose ending the game, false if not
+	 */
 	private static boolean playerActing(Game game, Player player) {
 		// menu
 		System.out.println("Please choose an action type:");
@@ -147,6 +153,9 @@ public class MyChessAndGoGame {
 
 	/**
 	 * after the game is ended, to print both players' records of the game.
+	 * @param game the object of the game
+	 * @param player1 the object of the first hand player
+	 * @param player2 the object of the later hand player
 	 */
 	private static void printRecord(Game game, Player player1, Player player2) {
 		System.out.println("\nAll of the Actions Record are followed.");
@@ -154,6 +163,7 @@ public class MyChessAndGoGame {
 		List<Action> actions1 = player1.actions();
 		List<Action> actions2 = player2.actions();
 		System.out.println("\n" + player1.name() + "'s Actions:");
+		// print their action types
 		for (int i = 0; i < actions1.size(); i++) {
 			if (actions1.get(i) != null)
 				System.out.println(i + ": " + actions1.get(i).actionType());
