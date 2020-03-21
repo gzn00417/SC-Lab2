@@ -9,10 +9,10 @@ public class chessAction implements Action {
 
     /**
      * create and finish the action
-     * @param player
-     * @param actionType
-     * @param piece
-     * @param positions
+     * @param player the operating player
+     * @param actionType String of the type of the action
+     * @param piece the operating piece
+     * @param positions the position related to the action
      */
     chessAction(Player player, String actionType, Piece piece, Position... positions) {
         this.player = player;
