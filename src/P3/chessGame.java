@@ -9,9 +9,10 @@ public class chessGame implements Game {
     public final String gameType = "chess";
     public Player player1, player2;
     public Board board;
-    private final int CHESS_BOARD_SIDE = 8;
+    private static final int CHESS_BOARD_SIDE = 8;
 
     chessGame() {
+        // new a board linking with the game
         board = new Board(this, CHESS_BOARD_SIDE);
         checkRep();
     }
@@ -75,6 +76,9 @@ public class chessGame implements Game {
         return;
     }
 
+    /**
+     * the Map whose keys are the name of pieces, values are the numbers they are on board totally
+     */
     private static final Map<String, Integer> piecesSumMap = new HashMap<String, Integer>() {
         private static final long serialVersionUID = 1L;
         {
@@ -87,6 +91,9 @@ public class chessGame implements Game {
         }
     };
 
+    /**
+     * the Map whose keys are the name of pieces, values are the coordinates of them
+     */
     private static final Map<String, int[][]> piecesPosMap = new HashMap<String, int[][]>() {
         private static final long serialVersionUID = 1L;
         {
@@ -105,12 +112,15 @@ public class chessGame implements Game {
         for (Map.Entry<String, Integer> entry : piecesSumMap.entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
                 String pieceName = (firstFlag ? "W" : "B") + entry.getKey() + i; // eg. WB1 BR2 WP3
-                Piece piece = new Piece(pieceName, firstFlag, (firstFlag ? player1 : player2));
+                Piece piece = new Piece(pieceName, firstFlag, (firstFlag ? player1 : player2)); // new a piece
+                // get the coordinate of a specific piece
                 int[] X = piecesPosMap.get(entry.getKey())[0];
                 int[] Y = piecesPosMap.get(entry.getKey())[1];
                 int x = X[i], y = (firstFlag ? Y[i] : CHESS_BOARD_SIDE - Y[i] - 1);
+                // put the piece on the position
                 piece.modifyPositionAs(board.positionXY(x, y));
                 board.positionXY(x, y).modifyPieceAs(piece);
+                // add the piece into the piece set of the player
                 pieces.add(piece);
             }
         }
