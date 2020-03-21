@@ -6,4 +6,8 @@ public class Person {
     public Person(String PersonName) {
         this.Name = PersonName;
     }
+
+    public String getName() {
+        return this.Name;
+    }
 }
