@@ -5,7 +5,7 @@ public class chessAction implements Action {
     private Position[] positions;
     public Player player;
     public Piece piece;
-    private final boolean actionSuccess;
+    private final boolean actionSuccess; // true if the action if it succeeds
 
     /**
      * create and finish the action
