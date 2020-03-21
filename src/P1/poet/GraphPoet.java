@@ -101,7 +101,7 @@ public class GraphPoet {
 		String line = "";
 		String[] words;
 		while ((line = reader.readLine()) != null) {
-		    	line = line.replace(".", " ");
+			line = line.replace(".", " ");
 			words = line.split(" ");
 			for (int i = 0; i < words.length; i++) {
 				graph.add(words[i].toLowerCase());
@@ -130,8 +130,8 @@ public class GraphPoet {
 	 * @return poem (as described above)
 	 */
 	public String poem(String input) {
-	    	String laststring = input.contains(".") ? "." : "";
-	    	String newInput = input.replace(".", " ");
+		String laststring = input.contains(".") ? "." : "";
+		String newInput = input.replace(".", " ");
 		String[] words = newInput.split(" ");
 		String answer = words[0];
 		Set<String> vertices = graph.vertices();
