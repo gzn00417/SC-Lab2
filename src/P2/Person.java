@@ -1,9 +1,9 @@
 package P2;
 
 public class Person {
-    public String Name;
+    private final String Name;
 
     public Person(String PersonName) {
-        Name = PersonName;
+        this.Name = PersonName;
     }
 }
