@@ -10,14 +10,14 @@ public class Player {
     private final boolean First;
     public Game game;
     public Set<Piece> pieces;
-    private List<Action> actions = new ArrayList<>();
+    private List<Action> actions = new ArrayList<>(); // the actions record in order
 
     /**
      * initialize a Player and set his pieces
-     * @param game
-     * @param playerName
-     * @param firstFlag
-     * @param pieces
+     * @param game the object of the game that the player is in
+     * @param playerName String of the player' name
+     * @param firstFlag true if the player is first hand, false if not
+     * @param pieces the set of pieces that the player owns
      */
     Player(Game game, String playerName, boolean firstFlag) {
         this.game = game;
@@ -65,6 +65,9 @@ public class Player {
         return this.actions;
     }
 
+    /**
+     * the Strings of the type of whole actions
+     */
     private final Set<String> actionTypes = new HashSet<String>() {
         private static final long serialVersionUID = 1L;
         {
@@ -76,8 +79,8 @@ public class Player {
 
     /**
      * generate a new action and init the action type
-     * @param actionType
-     * @return
+     * @param actionType String of the type of the action
+     * @return the object of the action created
      */
     public Action doAction(String actionType, Piece piece, Position... positions) {
         if (!actionTypes.contains(actionType))
@@ -96,6 +99,7 @@ public class Player {
     public int sumPiece() {
         int sum = 0;
         for (Piece piece : pieces) {
+            // calculate the non-null piece
             if (piece.position() != null) {
                 sum++;
             }
@@ -115,6 +119,7 @@ public class Player {
      */
     public Piece freePiece() {
         for (Piece piece : this.pieces) {
+            // find a random free piece
             if (piece.position() == null)
                 return piece;
         }
@@ -122,11 +127,12 @@ public class Player {
     }
 
     /**
-     * @param pieceName
+     * @param pieceName String of the name of the piece
      * @return piece object of the piece name
      */
     public Piece findPieceByName(String pieceName) {
         for (Piece piece : this.pieces) {
+            // find the piece whose name is matched with the giving
             if (piece.name().equals(pieceName))
                 return piece;
         }
