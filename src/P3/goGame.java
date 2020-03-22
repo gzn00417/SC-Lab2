@@ -51,12 +51,14 @@ public class goGame implements Game {
     }
 
     @Override
-    public Player isFree(int x, int y) {
+    public Player isFree(Player player, int x, int y) {
+        player.doAction("AskIsFree", null, null, null);
         return board.XYisFree(x, y);
     }
 
     @Override
-    public Map<Player, Integer> sumPiece() {
+    public Map<Player, Integer> sumPiece(Player player) {
+        player.doAction("SumPiece", null, null, null);
         return new HashMap<Player, Integer>() {
             private static final long serialVersionUID = 1L;
             {
@@ -67,7 +69,8 @@ public class goGame implements Game {
     }
 
     @Override
-    public void skip() {
+    public void skip(Player player) {
+        player.doAction("skip", null, null, null);
         return;
     }
 

@@ -1,11 +1,25 @@
 package P3;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class goAction implements Action {
     private final String actionType;
     public Position[] positions;
     public Player player;
     public Piece piece;
     private final boolean actionSuccess; // true if the action if it succeeds
+    private final static Set<String> ACTIONS = new HashSet<String>() {
+        private static final long serialVersionUID = 1L;
+        {
+            add("put");
+            add("move");
+            add("capture");
+            add("AskIsFree");
+            add("SumPiece");
+            add("skip");
+        }
+    };
 
     /**
      * create and finish the action
@@ -29,6 +43,15 @@ public class goAction implements Action {
             case "capture":
                 this.actionSuccess = capture();
                 break;
+            case "AskIsFree":
+                this.actionSuccess = true;
+                break;
+            case "SumPiece":
+                this.actionSuccess = true;
+                break;
+            case "skip":
+                this.actionSuccess = true;
+                break;
             default:
                 this.actionSuccess = false;
         }
@@ -38,13 +61,11 @@ public class goAction implements Action {
     /**
      * Rep:
      * actionType must be in {"put", "move", "capture"}
-     * the size of positions must be 1 or 2
      * player can't be null
      * if the actionType == "put", piece can't be null
      */
     private void checkRep() {
-        assert (actionType.equals("put") || actionType.equals("move") || actionType.equals("capture"));
-        assert (positions.length == 1 || positions.length == 2);
+        assert (ACTIONS.contains(actionType));
         assert (player != null);
         if (actionType.equals("put"))
             assert (piece != null);

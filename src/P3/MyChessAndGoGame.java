@@ -129,16 +129,16 @@ public class MyChessAndGoGame {
 					System.out.print("The (x, y) of the questioning grid: ");
 					x1 = input.nextInt();
 					y1 = input.nextInt();
-					Player here = game.isFree(x1, y1);
+					Player here = game.isFree(player, x1, y1);
 					System.out.println(here == null ? "Free" : here.name());
 					return false;
 				case 5: // sum of pieces
-					Map<Player, Integer> sumPiece = game.sumPiece(); // two players' sum of pieces
+					Map<Player, Integer> sumPiece = game.sumPiece(player); // two players' sum of pieces
 					System.out.println(game.player1().name() + ":" + sumPiece.get(game.player1()) + " pieces");
 					System.out.println(game.player2().name() + ":" + sumPiece.get(game.player2()) + " pieces");
 					return false;
 				case 6: // skip
-					game.skip();
+					game.skip(player);
 					System.out.println("Skip");
 					return false;
 				case 7: // end

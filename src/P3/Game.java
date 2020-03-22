@@ -66,20 +66,20 @@ public interface Game {
      * @param position the position related to the action
      * @return player if the position is occupied, null if the position is free
      */
-    public Player isFree(int x, int y);
+    public Player isFree(Player pLayer, int x, int y);
 
     /**
      * Choice 5
      * ask the sum of the piece on the board
      * @return a map whose keys are the players and values are the sum of the pieces of both players
      */
-    public Map<Player, Integer> sumPiece();
+    public Map<Player, Integer> sumPiece(Player player);
 
     /**
      * Choice 6
      * skip the choosing
      */
-    public void skip();
+    public void skip(Player player);
 
     /**
      * Choice 7
