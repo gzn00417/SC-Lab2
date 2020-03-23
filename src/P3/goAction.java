@@ -3,6 +3,9 @@ package P3;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * goAction implements Action and it does the actions in go game.
+ */
 public class goAction implements Action {
     private final String actionType;
     public Position[] positions;

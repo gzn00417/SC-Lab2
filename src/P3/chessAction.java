@@ -3,6 +3,9 @@ package P3;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * chessAction implements Action and it does the actions in chess game.
+ */
 public class chessAction implements Action {
     private final String actionType;
     private Position[] positions;
