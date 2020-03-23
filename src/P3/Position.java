@@ -59,7 +59,7 @@ public class Position {
 
     /**
      * to update the Piece of the Position
-     * @param newPiece
+     * @param newPiece the new piece that is to modify it as
      * @return true if the Piece updated successfully, false if the new Piece is null
      */
     public boolean modifyPieceAs(Piece newPiece) {

@@ -66,7 +66,7 @@ public class Piece {
 
     /**
      * to update the position of the piece
-     * @param newPosition
+     * @param newPosition the new position that is to modify it as
      * @return true if the position updated successfully, false if the newPosition is null
      */
     public boolean modifyPositionAs(Position newPosition) {

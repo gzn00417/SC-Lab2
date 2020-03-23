@@ -18,6 +18,8 @@ public class MyChessAndGoGame {
 	 * get 2 players' names printed on the screen.
 	 * generate 2 new Player;
 	 * generate new Piece belonged to Player;
+	 * 
+	 * @param args FORMAT
 	 */
 	public static void main(String[] args) {
 		// scan : 3 String

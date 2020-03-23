@@ -24,7 +24,6 @@ public class Player {
      * @param game the object of the game that the player is in
      * @param playerName String of the player' name
      * @param firstFlag true if the player is first hand, false if not
-     * @param pieces the set of pieces that the player owns
      */
     Player(Game game, String playerName, boolean firstFlag) {
         this.game = game;
