@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * chessGame implements Game and it run the game for chess.
+ */
 public class chessGame implements Game {
     public final String gameType = "chess";
     public Player player1, player2;

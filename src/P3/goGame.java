@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * goGame implements Game and it run the game for go.
+ */
 public class goGame implements Game {
     public final String gameType = "go";
     public Player player1, player2;

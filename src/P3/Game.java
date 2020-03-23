@@ -3,6 +3,10 @@ package P3;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * the interface Game is implemented by class chessGame and goGame.
+ * the Game can do the 7 chose of operations, be asked the players and board, and generate the pieces for initialize the players
+ */
 public interface Game {
 
     /**
@@ -95,6 +99,7 @@ public interface Game {
     public Set<Piece> pieces(boolean firstFlag);
 
     /**
+     * make players join in the game
      * @param p1 the first hand player
      * @param p2 the later hand player
      * @return true if successfully set the first and second players
@@ -102,26 +107,31 @@ public interface Game {
     public boolean setPlayers(Player p1, Player p2);
 
     /**
+     * ask the first player
      * @return first player
      */
     public Player player1();
 
     /**
+     * ask the later player
      * @return second player
      */
     public Player player2();
 
     /**
-     * @return the type of the game
+     * ask the type of the game
+     * @return String of the type of the game
      */
     public String gameType();
 
     /**
+     * get the object of the board
      * @return the board of the game
      */
     public Board board();
 
     /**
+     * find the player whose name is equal to the given
      * @param playerName String of the name of a player
      * @return the player who owns the name
      */
