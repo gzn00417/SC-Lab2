@@ -129,20 +129,6 @@ public abstract class GraphInstanceTest {
 		emptyInstance.set("1", "3", -1);
 	}
 
-	@Rule
-	public ExpectedException thrownInexistV = ExpectedException.none();
-
-	@Test
-	public void testSetInexistV() {
-		Graph<String> emptyInstance = emptyInstance();
-		assertEquals(true, emptyInstance.add("1"));
-		assertEquals(true, emptyInstance.add("2"));
-		assertEquals(true, emptyInstance.add("3"));
-		thrownInexistV.expect(RuntimeException.class);
-		thrownInexistV.expectMessage("Inexistent vertex");
-		emptyInstance.set("0", "3", 2);
-	}
-
 	@Test
 	public void testVertices() {
 		Graph<String> emptyInstance = emptyInstance();

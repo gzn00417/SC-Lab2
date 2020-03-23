@@ -70,6 +70,12 @@ public class ConcreteVerticesGraph<L> implements Graph<L> {
 	public int set(L source, L target, int weight) {
 		if (weight < 0)
 			throw new RuntimeException("Negative weight");
+		if (!vertices.contains(source) || !vertices.contains(target)) {
+			if (!vertices.contains(source))
+				this.add(source);
+			if (!vertices.contains(target))
+				this.add(target);
+		}
 		if (source.equals(target))
 			return 0;
 		Vertex<L> from = null, to = null;
