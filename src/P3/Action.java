@@ -1,5 +1,11 @@
 package P3;
 
+/**
+ * interface Action is implemented by chessAction and goAction which represent 2 types of game actions.
+ * An Action can execute 6 types of actions, including put, move, capture, AskIsFree, SumPiece and skip.
+ * As soon as the Action object is created, the action has been executed.
+ * The result of success will be stored in actionSuccess.
+ */
 public interface Action {
 
     /**
