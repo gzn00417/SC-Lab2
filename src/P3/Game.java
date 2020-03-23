@@ -68,10 +68,11 @@ public interface Game {
      * the position should be within the board
      * 
      * @param player the object of the player who operates it
-     * @param position the position related to the action
+     * @param x the x of the position related to the action
+     * @param y the y of the position related to the action
      * @return player if the position is occupied, null if the position is free
      */
-    public Player isFree(Player pLayer, int x, int y);
+    public Player isFree(Player player, int x, int y);
 
     /**
      * Choice 5
