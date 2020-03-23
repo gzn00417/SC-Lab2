@@ -26,7 +26,6 @@ public interface Action {
 
     /**
      * put a piece onto a position
-     * @param piece the putting piece
      * @return true if the putting is legal
      */
     public boolean put();
