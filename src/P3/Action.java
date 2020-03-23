@@ -25,6 +25,7 @@ public interface Action {
     }
 
     /**
+     * put a piece onto a position
      * @param piece the putting piece
      * @return true if the putting is legal
      */
@@ -49,11 +50,13 @@ public interface Action {
     public String actionType();
 
     /**
-     * @return who does the action
+     * ask who does the action
+     * @return the player who the action belongs to
      */
     public Player player();
 
     /**
+     * ask weather the action is done successfully.
      * @return true if the action is done successfully
      */
     public boolean askSuccess();
