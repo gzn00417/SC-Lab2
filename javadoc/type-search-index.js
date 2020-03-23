@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"P3","l":"Action"},{"p":"P3","l":"Board"},{"p":"P3","l":"chessAction"},{"p":"P3","l":"chessGame"},{"p":"P3","l":"Game"},{"p":"P3","l":"goAction"},{"p":"P3","l":"goGame"},{"p":"P3","l":"MyChessAndGoGame"},{"p":"P3","l":"Piece"},{"p":"P3","l":"Player"},{"p":"P3","l":"Position"},{"l":"所有类","url":"allclasses-index.html"}]
