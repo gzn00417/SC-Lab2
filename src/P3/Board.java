@@ -1,5 +1,10 @@
 package P3;
 
+/**
+ * The Board contains N*N Position objects.
+ * When the Board is created, the position is created too.
+ * It has methods to ask chosen position and its piece, and print the board on screen.
+ */
 public class Board {
     private final int N;
     public Game game;
