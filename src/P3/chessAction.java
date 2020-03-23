@@ -11,7 +11,13 @@ public class chessAction implements Action {
     private Position[] positions;
     public Player player;
     public Piece piece;
-    private final boolean actionSuccess; // true if the action if it succeeds
+    /**
+     * true if the action if it succeeds
+     */
+    private final boolean actionSuccess;
+    /**
+     * the probable actions' names
+     */
     private final static Set<String> ACTIONS = new HashSet<String>() {
         private static final long serialVersionUID = 1L;
         {

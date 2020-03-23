@@ -12,6 +12,7 @@ public class Board {
 
     /**
      * Initialize a new Board and N*N Position
+     * @param game the game of the board
      * @param boardSide the length of the board (8 or 19)
      */
     Board(Game game, int boardSide) {
@@ -42,6 +43,7 @@ public class Board {
     }
 
     /**
+     * ask the length of the board
      * @return the length of the board
      */
     public int boardLength() {
@@ -49,6 +51,7 @@ public class Board {
     }
 
     /**
+     * ask object of the position 
      * @param x the x of the asking position
      * @param y the y of the asking position
      * @return object of Position of the (x, y)
@@ -60,6 +63,7 @@ public class Board {
     }
 
     /**
+     * ask the piece on (x, y) if there isn't null
      * @param x the x of the asking position
      * @param y the y of the asking position
      * @return object of Piece of the (x, y)
@@ -71,6 +75,7 @@ public class Board {
     }
 
     /**
+     * ask the player who owns the piece of (x, y) or null if not
      * @param x the x of the asking position
      * @param y the y of the asking position
      * @return Player if (x, y) is occupied, null if it's free

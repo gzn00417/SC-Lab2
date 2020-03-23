@@ -14,6 +14,9 @@ public class goGame implements Game {
     public Board board;
     private static final int GO_BOARD_SIDE = 19, GO_POINTS = 361;
 
+    /**
+     * create a go game
+     */
     goGame() {
         // new a board linking with the game
         board = new Board(this, GO_BOARD_SIDE);

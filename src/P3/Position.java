@@ -9,6 +9,11 @@ public class Position {
     private final int x, y; // the coordinate of the position
     private Piece piece;
 
+    /**
+     * create the position
+     * @param X the x of the position
+     * @param Y the y of the position
+     */
     Position(int X, int Y) {
         this.x = X;
         this.y = Y;

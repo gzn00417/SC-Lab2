@@ -67,6 +67,7 @@ public interface Game {
      * 
      * the position should be within the board
      * 
+     * @param player the object of the player who operates it
      * @param position the position related to the action
      * @return player if the position is occupied, null if the position is free
      */
@@ -75,6 +76,7 @@ public interface Game {
     /**
      * Choice 5
      * ask the sum of the piece on the board
+     * @param player the object of the player who operates it
      * @return a map whose keys are the players and values are the sum of the pieces of both players
      */
     public Map<Player, Integer> sumPiece(Player player);
@@ -82,6 +84,7 @@ public interface Game {
     /**
      * Choice 6
      * skip the choosing
+     * @param player the object of the player who operates it
      */
     public void skip(Player player);
 

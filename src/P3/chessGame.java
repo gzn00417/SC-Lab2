@@ -14,6 +14,9 @@ public class chessGame implements Game {
     public Board board;
     private static final int CHESS_BOARD_SIDE = 8;
 
+    /**
+     * create a chess game
+     */
     chessGame() {
         // new a board linking with the game
         board = new Board(this, CHESS_BOARD_SIDE);

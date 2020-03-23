@@ -91,6 +91,8 @@ public class Player {
     /**
      * generate a new action and init the action type
      * @param actionType String of the type of the action
+     * @param piece the putting piece when the actionType is "put", null if not
+     * @param positions the positions related to the action
      * @return the object of the action created
      */
     public Action doAction(String actionType, Piece piece, Position... positions) {
