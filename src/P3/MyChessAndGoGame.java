@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * This is the client of the chess and go game.
+ */
 public class MyChessAndGoGame {
 	public static Scanner input = new Scanner(System.in);
 
@@ -63,6 +66,7 @@ public class MyChessAndGoGame {
 	}
 
 	/**
+	 * The chosen player is operating one choice
 	 * @param game the object of the game
 	 * @param player the object of the operating player
 	 * @return true if the player choose ending the game, false if not

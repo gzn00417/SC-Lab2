@@ -1,5 +1,10 @@
 package P3;
 
+/**
+ * Piece represent one piece on the board.
+ * Every piece has its own name, and knows its position and owner player.
+ * the object can ask for the information, and modify the position.
+ */
 public class Piece {
     private final String name;
     private final boolean firstFlag;
@@ -28,6 +33,7 @@ public class Piece {
     }
 
     /**
+     * ask the piece's name
      * @return the name of the Piece
      */
     public String name() {
@@ -35,6 +41,7 @@ public class Piece {
     }
 
     /**
+     * ask the position of the piece
      * @return the Position of the Piece
      */
     public Position position() {
@@ -42,6 +49,7 @@ public class Piece {
     }
 
     /**
+     * ask who owns the piece
      * @return the player who the piece belongs to
      */
     public Player player() {
@@ -49,6 +57,7 @@ public class Piece {
     }
 
     /**
+     * ask the piece belongs to first player or later player
      * @return true is the piece belongs to first player, false if not
      */
     public boolean isFirst() {

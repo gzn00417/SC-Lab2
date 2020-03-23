@@ -5,12 +5,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * the Player represent the gaming player.
+ * the player owns the pieces and actions as well as operating them.
+ */
 public class Player {
     private final String playerName;
     private final boolean First;
     public Game game;
     public Set<Piece> pieces;
-    private List<Action> actions = new ArrayList<>(); // the actions record in order
+    /**
+     * the actions record in order
+     */
+    private List<Action> actions = new ArrayList<>();
 
     /**
      * initialize a Player and set his pieces
@@ -38,6 +45,7 @@ public class Player {
     }
 
     /**
+     * ask the player is first or later hand
      * @return true if the player plays firstly
      */
     public boolean isFirst() {
@@ -45,6 +53,7 @@ public class Player {
     }
 
     /**
+     * ask for the object of the game
      * @return the game which the player is gaming in
      */
     public Game game() {
@@ -52,6 +61,7 @@ public class Player {
     }
 
     /**
+     * ask for all of the pieces
      * @return the player's all piece
      */
     public Set<Piece> pieces() {
@@ -59,6 +69,7 @@ public class Player {
     }
 
     /**
+     * ask for the actions after game
      * @return the actions which the player has already done
      */
     public List<Action> actions() {
@@ -94,6 +105,7 @@ public class Player {
     }
 
     /**
+     * ask the number of pieces
      * @return the number of pieces
      */
     public int sumPiece() {
@@ -108,13 +120,15 @@ public class Player {
     }
 
     /**
-     * @return the player's name
+     * ask one player's name
+     * @return String of the player's name
      */
     public String name() {
         return this.playerName;
     }
 
     /**
+     * ask any of the free pieces
      * @return a free piece belonging to the player
      */
     public Piece freePiece() {
@@ -127,6 +141,7 @@ public class Player {
     }
 
     /**
+     * find a piece which owns the same name
      * @param pieceName String of the name of the piece
      * @return piece object of the piece name
      */

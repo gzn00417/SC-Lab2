@@ -1,5 +1,10 @@
 package P3;
 
+/**
+ * Position represent a grid in chess or a point in go.
+ * A position will not be modify its coordinates once it has been created.
+ * When the position has piece on it, the position is related with the player.
+ */
 public class Position {
     private final int x, y; // the coordinate of the position
     private Piece piece;
