@@ -94,7 +94,8 @@ public class MyChessAndGoGame {
 			switch (choice) {
 				case 1: // put
 					if (game.gameType().equals("chess")) {
-						pieceName = input.next("Piece Name (eg. WQ0 BP2): ");
+					    	System.out.print("Piece Name (eg. WQ0 BP2): ");
+						pieceName = input.next();
 					}
 					System.out.print("The (x, y) of the target: ");
 					x1 = input.nextInt();
