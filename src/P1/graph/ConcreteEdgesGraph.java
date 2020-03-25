@@ -139,7 +139,7 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
 }
 
 /**
- * TODO specification Immutable.
+ * The edge class must be immutable
  * This class is internal to the rep of ConcreteEdgesGraph.
  * 
  * <p>

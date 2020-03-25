@@ -164,6 +164,9 @@ public class ConcreteVerticesGraph<L> implements Graph<L> {
 }
 
 /**
+ * This class is mutable , the number of out coming edges must be the same with
+ * the in coming edges the weight must be non-negative Mutable. This class is
+ * internal to the rep of ConcreteVerticesGraph.
  * specification Mutable.
  * This class is internal to the rep of ConcreteVerticesGraph.
  * 
