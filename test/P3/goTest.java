@@ -13,7 +13,7 @@ import org.junit.Test;
  * @author guozn
  *
  */
-public class goTest {
+public class GoTest {
 
 	@Test
 	public void testInit() {
