@@ -105,11 +105,9 @@ public class ConcreteVerticesGraph<L> implements Graph<L> {
 			if (THIS.ThisVertex().equals(vertex)) {
 				for (Vertex<L> v : vertices) {
 					if (THIS.sources().containsKey(v)) {
-						// THIS.removeInEdge(v);
 						v.removeOutEdge(THIS.ThisVertex());
 					}
 					if (THIS.targets().containsKey(v)) {
-						// THIS.removeOutEdge(v);
 						v.removeInEdge(THIS.ThisVertex());
 					}
 				}
@@ -176,9 +174,9 @@ public class ConcreteVerticesGraph<L> implements Graph<L> {
 class Vertex<L> {
 
 	// fields
-	private L ThisVertex;
-	private Map<L, Integer> inEdges = new HashMap<>();
-	private Map<L, Integer> outEdges = new HashMap<>();
+	private final L ThisVertex;
+	private final Map<L, Integer> inEdges = new HashMap<>();
+	private final Map<L, Integer> outEdges = new HashMap<>();
 
 	// Abstraction function:
 	// ThisVertex represents itself;
@@ -225,10 +223,12 @@ class Vertex<L> {
 	public int setInEdge(L source, int weight) {
 		if (weight <= 0)
 			return 0;
-		for (L key : inEdges.keySet()) {
+		Iterator<L> it =inEdges.keySet().iterator();
+		while (it.hasNext()) {
+		    	L key = it.next();
 			if (key.equals(source)) {
 				int lastEdgeWeight = inEdges.get(key);
-				inEdges.remove(key);
+				it.remove();
 				inEdges.put(source, weight);
 				return lastEdgeWeight;
 			}
@@ -241,10 +241,12 @@ class Vertex<L> {
 	public int setOutEdge(L target, int weight) {
 		if (weight <= 0)
 			return 0;
-		for (L key : outEdges.keySet()) {
+		Iterator<L> it =outEdges.keySet().iterator();
+		while (it.hasNext()) {
+		    	L key = it.next();
 			if (key.equals(target)) {
 				int lastEdgeWeight = outEdges.get(key);
-				outEdges.remove(key);
+				it.remove();
 				outEdges.put(target, weight);
 				return lastEdgeWeight;
 			}

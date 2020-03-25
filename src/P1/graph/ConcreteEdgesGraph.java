@@ -4,11 +4,6 @@
 package P1.graph;
 
 import java.util.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * An implementation of Graph.
@@ -69,10 +64,12 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
         if (source.equals(target)) // source is the same with target, REFUSE to set the Edge.
             return 0;
         // Find the same edge
-        for (Edge<L> edge : edges) {
+        Iterator<Edge<L>> it = edges.iterator();
+        while (it.hasNext()) {
+            Edge<L> edge = it.next();
             if (edge.sameEdge(source, target)) {
                 int lastEdgeWeight = edge.weight();
-                edges.remove(edge);
+                it.remove();
                 if (weight > 0) {
                     Edge<L> newEdge = new Edge<L>(source, target, weight);
                     edges.add(newEdge);
@@ -148,8 +145,8 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
 class Edge<L> {
 
     // fields
-    private L source, target;
-    private int weight;
+    private final L source, target;
+    private final int weight;
 
     // Abstraction function:
     /*
