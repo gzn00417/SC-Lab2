@@ -1,6 +1,3 @@
-﻿> # 本项目于3.17日实验课验收，请放心参考
-> # 参考时文中有给出一些建议，请查看
-> # `基本更新完成`
 ![HIT](https://img-blog.csdnimg.cn/20200308214236949.png#pic_center)
 
 # 2020春计算机学院《软件构造》课程Lab2实验报告
@@ -26,12 +23,16 @@
 依据https://www.eclemma.org/installation.html内容，从更新站点进行安装。
 - 从Eclipse菜单中选择帮助 → 安装新软件；
 - 在“安装”对话框中，在“ 工作日期”字段中输入http://update.eclemma.org/；
+
+
  ![](https://img-blog.csdnimg.cn/20200320232534366.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 - 检查最新的EclEmma版本，然后按“下一步”；
 - 重启eclipse，即可在java的透视图工具栏中找到coverage启动器，表示安装成功。 
+
 ![](https://img-blog.csdnimg.cn/20200320232543941.png#pic_center)
 - 使用效果
- 
+
 ![](https://img-blog.csdnimg.cn/20200320232548938.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
 ## 2.2 GitHub Lab2仓库的URL地址
 略
@@ -53,6 +54,7 @@ git clone https://github.com/rainywang/Spring2020_HITCS_SC_Lab2.git
 ### 3.1.2 Problem 1: Test Graph < String >
 测试静态方法生成String类型的Graph。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200320232834926.png#pic_center)
+
 ### 3.1.3 Problem 2: Implement Graph <String>
 该部分要求重写Graph里的方法，分别以点为基础的图和以边为基础的图。
 
@@ -150,7 +152,7 @@ git clone https://github.com/rainywang/Spring2020_HITCS_SC_Lab2.git
 	}
 ```
 
- 
+
 ***ConcreteVerticesGraph实现***
 - ConcreteVerticesGraph是以点为基础的图，每个点通过唯一的标识进行区分，set和remove都依赖与Vertex类中的添加和删除操作，sources和targets也调用了Vertex类的方法。
 
@@ -214,10 +216,11 @@ git clone https://github.com/rainywang/Spring2020_HITCS_SC_Lab2.git
 ```
 
 - JUnit测试
+
 ![](https://img-blog.csdnimg.cn/20200325180436167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
 
  ### 3.1.4 Problem 3: Implement generic Graph < L >
- 
+
 #### 3.1.4.1 Make the implementations generic
 - 在程序中选择“重构”或选择“String”并选择更改所有匹配项（要注意toString），即可实现泛化类型。
 
@@ -285,15 +288,18 @@ if (lastEdgeWeight != 0) graph.set(words[i - 1].toLowerCase(), words[i].toLowerC
  ![](https://img-blog.csdnimg.cn/20200320234012131.png#pic_center)
 - 修改样例为`“This is a the Mugar system Omni Theater sound system test of the.”`，测试成功。该样例用于测试极端情况。
 ![](https://img-blog.csdnimg.cn/20200320234019157.png#pic_center)
- 
+
 - ***Junit测试***
 ![](https://img-blog.csdnimg.cn/20200320234024359.png#pic_center)
 
 ### 3.1.6 Before you’re done
 请按照 [http://web.mit.edu/6.031/www/sp17/psets/ps2/#before_youre_done](http://web.mit.edu/6.031/www/sp17/psets/ps2/#before_youre_done) 的说明，检查你的程序。
 如何通过Git提交当前版本到GitHub上你的Lab2仓库。
+
 ![](https://img-blog.csdnimg.cn/20200320234611516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 在这里给出你的项目的目录结构树状示意图。
+
 ![](https://img-blog.csdnimg.cn/20200321114511141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
 
 ## 3.2 Re-implement the Social Network in Lab1
@@ -455,7 +461,10 @@ public class FriendshipGraphTest {
 
 #### 3.2.4.2 复杂图测试
 - 设计10个点、10条边的社交网络图：
+
+
 ![](https://img-blog.csdnimg.cn/2020032111440888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 分别测试：
 1.	AE距离2，AD距离1，AG距离3，BF距离3，DF距离2，HJ距离2
 2.	II距离0
@@ -465,8 +474,11 @@ public class FriendshipGraphTest {
 - 全部正确。
 
 ![](https://img-blog.csdnimg.cn/202003211144511.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 ### 3.2.5 提交至Git仓库
 - 如何通过Git提交当前版本到GitHub上你的Lab2仓库。
+
+
 ![](https://img-blog.csdnimg.cn/20200320234611516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
 - 在这里给出你的项目的目录结构树状示意图。
 ![](https://img-blog.csdnimg.cn/20200321114620252.png#pic_center)
@@ -489,14 +501,18 @@ public class FriendshipGraphTest {
 10.	跳过
 11.	结束：输入“end”
 整体架构
+
 ![](https://img-blog.csdnimg.cn/20200314203829832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
 文件结构：
+
 ![](https://img-blog.csdnimg.cn/20200325174512477.png#pic_center)
- 
+
 ### 3.3.1 ADT设计/实现方案
 #### 3.3.1.1 interface Game
 接口Game由chessGame和goGame实现，是Main()程序通向游戏对象的路口，通过一个接口把两种游戏分开，相同的操作类型在不同游戏中实现。
+
 ![](https://img-blog.csdnimg.cn/2020032517173127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 Game拥有7种操作所对应的方法，并且能支持访问下属的Player（先后手访问、名字访问）和Board，以及为玩家产生所对应Piece的功能。
 	7种操作除了“end”均隶属于Player对象进行操作，其中的“放棋”、“移动”、“吃子/提子”均在Action接口的实现类中完成，在Game接口的实现类中判断是否执行成功即可。因此3种操作可以在Game的实现类中实现近乎标准化和统一（输入操作类型String即可），以“吃子/提子”（capture）为例：
 ```java
@@ -509,7 +525,9 @@ public boolean capture(Player player, Position... positions) {
 ```
 
 在两种游戏中，差异较大的之一就是棋子。棋子属于玩家，但棋子是由一个特定类型的游戏所“产生”的，因此Game的两个实现类中差异最大的就是产生棋子的方法：
+
 ![](https://img-blog.csdnimg.cn/20200325171745435.png#pic_center)
+
 在chess中，黑白双方棋子除了颜色都相同，因此可以用chessGame静态成员变量预设好每个棋子的名字、数量和位置（黑白双方可以用公式颠倒）。然后依据预设的静态数据新建16个Piece对象，初始化Position、Player，最后加入Set<Piece>中返回。goGame中大致相同。
 
 ```java
@@ -564,23 +582,30 @@ public boolean capture(Player player, Position... positions) {
 ```
 
 Game是Board和Player的父类。Board的创建只能源于Game的构造函数，Player的创建必须后于Game且玩家的Piece依赖于Game的函数。
+
 ![](https://img-blog.csdnimg.cn/20200325171754332.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 上图上方三个分别是Game和Game的实现类chessGame和goGame，Board和Game隶属于Game，在不同情况下调用两种实现类，且这两者无法联系，保护了对象的私有数据。
  
 ##### 3.3.1.1.1	class chessGame
 实现chess在Game中的功能。
- ![](https://img-blog.csdnimg.cn/20200325171803347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
+![](https://img-blog.csdnimg.cn/20200325171803347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
  
 ##### 3.3.1.1.2	class goGame
 实现go在Game中的功能。
+
 ![](https://img-blog.csdnimg.cn/20200325171814701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
 
- 
+
 #### 3.3.1.2 class Board
 Board是棋盘的对象，构造依赖于Game的构造。Position的创建也依赖于Board，Board也存储这二维Position类型数组，并且拥有final变量N记录棋盘的边长。
+
 ![](https://img-blog.csdnimg.cn/20200325171834929.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
 Board的主要用于查询指定位置的Position、Piece和Player，以及打印棋盘。查询Position可以直接访问positions成员变量，而查询Piece又要访问指定位置的Position不为空的Piece，而查询Player又要查询不空的Piece的Player。
+
 ![](https://img-blog.csdnimg.cn/20200325171847298.png#pic_center)
+
 在三个函数的实现中，按照调用关系，先后实现。在这里设计Position和Piece平级且捆绑，同为可变。
 
 ```java
@@ -658,17 +683,26 @@ public void printBoard() {
 ```
 
 国际象棋：大写代表白方，小写代表黑方。
+
 ![](https://img-blog.csdnimg.cn/20200325171858369.png#pic_center)
+
 围棋：B代表黑方，W代表白方。
+
 ![](https://img-blog.csdnimg.cn/20200325171903252.png#pic_center)
+
 棋盘能够管理棋格/点，而根据要求棋盘是不能管理棋子的。因此Board是Game的子类，也是Position的父类。
+
 ![](https://img-blog.csdnimg.cn/20200325171909241.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
  
 #### 3.3.1.3 class Player
 Player对象代表着玩家，有这Boolean标签区分先后手，拥有Piece并管理Action。
+
 ![](https://img-blog.csdnimg.cn/20200325171915636.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 Player的方法除了查询本对象的信息，还有寻找自己下属的棋子，以及执行并记录Action。
+
 ![](https://img-blog.csdnimg.cn/20200325171921985.png#pic_center)
+
 寻找棋子时：当以棋子名字查询时，只需在成员变量Set<Piece> pieces中遍历，判断棋子的名字是否相等即可；而当查询任意一个空闲棋子时，则需判断其position是否为空。此外，Player还能计算本方棋盘上棋子总数。
 
 ```java
@@ -740,7 +774,9 @@ public Action doAction(String actionType, Piece piece, Position... positions) {
 
 #### 3.3.1.4 class Position
 Position代表着国际象棋棋盘的格子以及围棋棋盘的交叉点。
+
 ![](https://img-blog.csdnimg.cn/20200325171939372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 Position隶属于Board，一个对象的x和y是不可变的，但Position记录的Piece对象是可变的，提供了方法进行修改。
 
 ```java
@@ -756,10 +792,12 @@ public boolean modifyPieceAs(Piece newPiece) {
 }
 ```
 
- 
+
 #### 3.3.1.5 class Piece
 Piece代表着棋盘上的棋子，用一个唯一标识的String来区分每一个棋子，和一个Boolean来区分先后手，这两个信息是不可变的。
+
 ![](https://img-blog.csdnimg.cn/20200325171953757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 和Position相似，Piece也提供了修改Position的方法，用于移动棋子等变化操作。
 
 ```java
@@ -775,10 +813,12 @@ public boolean modifyPositionAs(Position newPosition) {
 }
 ```
 
- 
+
 #### 3.3.1.6 interface Action
 Action代表着要求里的若干个操作，通过一个String来区分，在构造函数中就实现这一操作（主要是放棋、吃子/提子、移动）。所需要的参数通过客户端的输入，再由Game传递，Player的方法doAction()中构造，然后在Action对象中执行，并记录执行的成败。Action是基于Player实现的，作用于Position。
+
 ![](https://img-blog.csdnimg.cn/20200325172003507.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 接口Action有一个静态函数作为构造器：
 
 ```java
@@ -841,11 +881,14 @@ chessAction(Player player, String actionType, Piece piece, Position... positions
 ```
 
 chessAction和goAction分别重写Action中的操作，主要是put()、move()、capture()三个方法。最后通过方法的返回值将结果记录在actionSuccess。
+
 ![](https://img-blog.csdnimg.cn/2020032517201783.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
  
 ##### 3.3.1.6.1	class chessAction
 chessAction代表着国际象棋中的操作。
+
 ![](https://img-blog.csdnimg.cn/20200325172028480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 put()操作与go类型，将在goAction中举例。move()操作和capture()操作中，国际象棋比围棋多需要1个Position操作，因此输入Position时就以不定项参数输入。两个操作大体类似，主要区别于：move的目标格要求为空，capture需要移除目标格棋子。以capture()为例：
 
 ```java
@@ -867,7 +910,9 @@ public boolean capture() {
 
 ##### 3.3.1.6.2	class goAction
 goAction代表着围棋中的操作。
+
 ![](https://img-blog.csdnimg.cn/20200325172036285.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,color_FFFFFF,t_70#pic_center)
+
 put()操作在国际象棋和围棋中类似：客户端输入棋的名字（类型即可、无编号），然后game寻找该棋子后输入action对象；board将(x, y)转换为Position对象后输入action对象；最后执行：（以goAction为例）
 
 ```java
@@ -893,7 +938,9 @@ Main()主要分为3个步骤：
 2.	选择游戏功能并执行
 3.	打印游戏记录
 #### 3.3.2.1 游戏流程图
+
 ![](https://img-blog.csdnimg.cn/20200325172445555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6bjAwNDE3,size_16,color_FFFFFF,t_70#pic_center)
+
 #### 3.3.2.2 程序演示
 - 初始化：
 	- 给出提示语，输入游戏类型、玩家双方名字。若创建成功则显示“Game Start”。
@@ -1366,33 +1413,22 @@ public void testMove() {
 ![](https://img-blog.csdnimg.cn/20200325173702530.png#pic_center)
 
 # 4 实验进度记录
-日期	时间段	计划任务	实际完成情况
-2020-03-09	晚上	初始化项目	完成
-2020-03-10	中午	Problem1 3.1.1-3.1.2	完成
-2020-03-10	晚上	Problem1 3.1.3.1 Edge Graph	完成
-2020-03-11	晚上	Problem1 3.1.3.2 Vertex Graph	完成
-2020-03-12	下午	通过Graph Instance Test	完成
-2020-03-12	晚上	Problem1 3.1.5 Graph Poet	完成
-2020-03-13	上午	Problem1 3.1.5 Test	完成
-2020-03-13	上午	Problem2 3.2整体完成	完成
-2020-03-13	晚上	Problem3 设计框架 写AF&RI	完成
-2020-03-14	上午	Problem3 完成框架	完成
-2020-03-14	下午	实现Action接口、Player、Board、Position、Piece具体功能	完成
-2020-03-14	晚上	完善上述功能，修改bug	完成
-2020-03-15	上午	实现Game接口、chessAction、goAction功能	完成
-2020-03-15	晚上	实现chessGame、goGame功能，调试测试用例	完成
-2020-03-16	晚上	通过chessGame测试	完成
-2020-03-17	下午	通过goGame测试	完成
-2020-03-17	晚上	验收完成	完成
-
-
-
-
-
-> # 本项目于3.17日实验课验收，请放心参考
-> # 参考时文中有给出一些建议，请查看
-> # `基本更新完成`
-
-
-
-
+| **日期**       | **时间段** | **计划任务**                                           | **实际完成情况** |
+| -------------- | ---------- | ------------------------------------------------------ | ---------------- |
+| **2020-03-09** | 晚上       | 初始化项目                                             | 完成             |
+| **2020-03-10** | 中午       | Problem1 3.1.1-3.1.2                                   | 完成             |
+| **2020-03-10** | 晚上       | Problem1 3.1.3.1 Edge Graph                            | 完成             |
+| **2020-03-11** | 晚上       | Problem1 3.1.3.2 Vertex Graph                          | 完成             |
+| **2020-03-12** | 下午       | 通过Graph Instance Test                                | 完成             |
+| **2020-03-12** | 晚上       | Problem1 3.1.5 Graph Poet                              | 完成             |
+| **2020-03-13** | 上午       | Problem1 3.1.5 Test                                    | 完成             |
+| **2020-03-13** | 上午       | Problem2 3.2整体完成                                   | 完成             |
+| **2020-03-13** | 晚上       | Problem3 设计框架 写AF&RI                              | 完成             |
+| **2020-03-14** | 上午       | Problem3 完成框架                                      | 完成             |
+| **2020-03-14** | 下午       | 实现Action接口、Player、Board、Position、Piece具体功能 | 完成             |
+| **2020-03-14** | 晚上       | 完善上述功能，修改bug                                  | 完成             |
+| **2020-03-15** | 上午       | 实现Game接口、chessAction、goAction功能                | 完成             |
+| **2020-03-15** | 晚上       | 实现chessGame、goGame功能，调试测试用例                | 完成             |
+| **2020-03-16** | 晚上       | 通过chessGame测试                                      | 完成             |
+| **2020-03-17** | 下午       | 通过goGame测试                                         | 完成             |
+| **2020-03-17** | 晚上       | 验收完成                                               | 完成             |
